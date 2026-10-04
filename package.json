@@ -18,6 +18,7 @@
     "@astrojs/cloudflare": "^14.3.1",
     "@astrojs/react": "^6.0.6",
     "@emdash-cms/cloudflare": "^1.0.1",
+    "@lucasmarkes/hairline": "^0.2.0",
     "astro": "^7.3.2",
     "clsx": "^2.1.1",
     "emdash": "^1.0.1",

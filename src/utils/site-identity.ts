@@ -13,7 +13,7 @@ export interface BlogSiteIdentitySettings {
 }
 
 const DEFAULT_SITE_TITLE = "PT Digitas Solusi Indonesia";
-const DEFAULT_SITE_TAGLINE = "Enterprise LegalTech & Resilient Cloud Infrastructure";
+const DEFAULT_SITE_TAGLINE = "Design & engineering partner for scale-ups and enterprise products";
 
 export function resolveBlogSiteIdentity(settings?: BlogSiteIdentitySettings) {
 	return {

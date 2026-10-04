@@ -6,6 +6,7 @@ import {
 } from "emdash";
 import Base from "../layouts/Base.astro";
 import { HeroCraft } from "../components/HeroCraft";
+import { ServicesShowcase } from "../components/ServicesShowcase";
 import { InteractiveShowcase } from "../components/InteractiveShowcase";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
 
@@ -35,8 +36,9 @@ const postsWithTags = posts.map((post) => ({
 }));
 ---
 
-<Base title="PT Digitas Solusi Indonesia" description="Architecting Enterprise LegalTech & Resilient Cloud Infrastructure for Southeast Asia">
+<Base title="PT Digitas Solusi Indonesia" description="A design and engineering partner for scale-ups and enterprise products. Web, systems, UI/UX, SEO/SEM, brand and problem solving. Incubator of Legalizin.com.">
 	<HeroCraft client:load />
+	<ServicesShowcase client:visible />
 	<InteractiveShowcase client:visible />
 
 	<section class="px-5 py-20 sm:py-28" style="background: var(--cf-bg)">
@@ -45,7 +47,7 @@ const postsWithTags = posts.map((post) => ({
 				<div>
 					<p class="cf-mono mb-4 text-xs uppercase tracking-widest" style="color: var(--cf-accent)">Publications</p>
 					<h2 class="cf-display text-balance" style="font-weight:700;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.045em;line-height:1;color:var(--cf-fg)">
-						Regulatory intelligence.
+						Legalizin insights.
 					</h2>
 				</div>
 				<a href="/posts" class="pub-all">All publications <span aria-hidden="true">→</span></a>
