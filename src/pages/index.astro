@@ -7,6 +7,7 @@ import {
 import Base from "../layouts/Base.astro";
 import PostCard from "../components/PostCard.astro";
 import { HeroInteractive } from "../components/HeroInteractive";
+import { MetricsSection } from "../components/MetricsSection";
 import { EcosystemGrid } from "../components/EcosystemGrid";
 import { TechStackShowcase } from "../components/TechStackShowcase";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
@@ -38,8 +39,11 @@ const postsWithTags = posts.map((post) => ({
 ---
 
 <Base title="PT Digitas Solusi Indonesia" description="Architecting Enterprise LegalTech & Resilient Cloud Infrastructure for Southeast Asia">
-	<!-- Interactive Hero Section with Framer Motion -->
+	<!-- Interactive Hero Atmosphere Section with Framer Motion & Scroll Cue -->
 	<HeroInteractive client:load />
+
+	<!-- Key Metrics Section -->
+	<MetricsSection client:visible />
 
 	<!-- Holding Ecosystem Bento Grid -->
 	<EcosystemGrid client:visible />
