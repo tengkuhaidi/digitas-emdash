@@ -31,7 +31,7 @@ export function TechStackShowcase() {
   ];
 
   return (
-    <section className="py-16 md:py-20 border-t border-slate-800/80 bg-slate-950/40">
+    <section className="py-16 md:py-20 border-t border-slate-800/80 bg-[#070B14]">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs uppercase font-bold tracking-widest text-indigo-400 block mb-2">
