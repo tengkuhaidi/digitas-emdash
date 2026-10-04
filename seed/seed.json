@@ -149,9 +149,8 @@
 				},
 				{
 					"type": "custom",
-					"label": "Legalizin.com",
-					"url": "https://legalizin.com",
-					"target": "_blank"
+					"label": "Case Study",
+					"url": "/case-study/legalizin"
 				}
 			]
 		}

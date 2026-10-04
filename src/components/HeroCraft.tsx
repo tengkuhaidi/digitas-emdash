@@ -1,19 +1,18 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Router } from "@lucasmarkes/hairline/react";
 
 const spring = { type: "spring", stiffness: 260, damping: 24 } as const;
 
 export function HeroCraft() {
   return (
-    <section className="relative isolate overflow-hidden px-5 pt-32 pb-16 sm:pt-40 sm:pb-24" style={{ background: "var(--cf-bg)" }}>
-      {/* Particle head atmosphere: lighten blend drops true-black box; masks feather every edge */}
+    <section className="relative isolate overflow-hidden px-5 pt-36 pb-24 sm:pt-44 sm:pb-32" style={{ background: "var(--cf-bg)" }}>
+      {/* Particle head centered behind text: lighten blend drops true-black box; radial mask feathers every edge */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-full opacity-[0.28] sm:opacity-45 lg:w-[78%] lg:opacity-70"
+        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-40 sm:opacity-55 lg:opacity-65"
         style={{
-          maskImage: "radial-gradient(ellipse 70% 75% at 55% 48%, #000 25%, transparent 78%)",
-          WebkitMaskImage: "radial-gradient(ellipse 70% 75% at 55% 48%, #000 25%, transparent 78%)",
+          maskImage: "radial-gradient(ellipse 55% 60% at 50% 50%, #000 20%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse 55% 60% at 50% 50%, #000 20%, transparent 75%)",
         }}
       >
         <img
@@ -23,16 +22,16 @@ export function HeroCraft() {
           height={673}
           decoding="async"
           fetchPriority="low"
-          className="h-full w-full object-cover object-[60%_center] mix-blend-lighten"
+          className="h-auto w-[170%] max-w-none object-contain mix-blend-lighten sm:w-[125%] lg:w-[900px]"
         />
       </div>
-      {/* Left-side legibility scrim (desktop) + top/bottom melt into canvas */}
+      {/* Soft center scrim for legibility + top/bottom melt into canvas */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(90deg, #09090b 0%, rgba(9,9,11,0.88) 28%, rgba(9,9,11,0.35) 52%, transparent 70%), linear-gradient(180deg, #09090b 0%, transparent 18%, transparent 78%, #09090b 100%)",
+            "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(9,9,11,0.55) 0%, transparent 70%), linear-gradient(180deg, #09090b 0%, transparent 18%, transparent 78%, #09090b 100%)",
         }}
       />
       <div
@@ -51,83 +50,54 @@ export function HeroCraft() {
         }}
       />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-6">
-        <div className="flex flex-col items-start text-left">
-          <motion.a
-            href="#legalizin"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={spring}
-            className="group mb-8 inline-flex items-center gap-2 rounded-full border py-1 pr-3 pl-1 text-xs"
-            style={{ borderColor: "var(--cf-border)", background: "var(--cf-card)", color: "var(--cf-muted)" }}
-          >
-            <span className="rounded-full px-2 py-0.5 text-[11px] font-semibold" style={{ background: "var(--cf-inv-bg)", color: "var(--cf-inv-fg)" }}>
-              Venture
-            </span>
-            Incubator of Legalizin.com
-            <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
-          </motion.a>
+      <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring, delay: 0.08 }}
+          className="cf-display text-balance"
+          style={{ fontWeight: 700, fontSize: "clamp(2.5rem, 7vw, 5.25rem)", letterSpacing: "-0.055em", lineHeight: 0.96, color: "var(--cf-fg)" }}
+        >
+          A design and engineering partner{" "}
+          <span style={{ color: "var(--cf-dim)" }}>for scale-ups and enterprise products.</span>
+        </motion.h1>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.08 }}
-            className="cf-display text-balance"
-            style={{ fontWeight: 700, fontSize: "clamp(2.5rem, 7vw, 5.25rem)", letterSpacing: "-0.055em", lineHeight: 0.96, color: "var(--cf-fg)" }}
-          >
-            A design and engineering partner{" "}
-            <span style={{ color: "var(--cf-dim)" }}>for scale-ups and enterprise products.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.18 }}
-            className="mt-7 max-w-xl text-base leading-relaxed sm:text-lg"
-            style={{ color: "var(--cf-muted)" }}
-          >
-            PT Digitas Solusi Indonesia acts as an elite extension of your in-house team: high-fidelity product design, high-converting web experiences, growth architecture and resilient digital systems, shipped at scale.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.26 }}
-            className="mt-9 flex flex-wrap items-center gap-3"
-          >
-            <motion.a
-              href="#services"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-              className="inline-flex h-12 items-center gap-2 rounded-full px-7 text-[15px] font-semibold"
-              style={{ background: "var(--cf-inv-bg)", color: "var(--cf-inv-fg)" }}
-            >
-              Explore capabilities <ArrowRight size={16} />
-            </motion.a>
-            <motion.a
-              href="https://legalizin.com"
-              target="_blank"
-              rel="noopener"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-              className="inline-flex h-12 items-center gap-2 rounded-full border px-7 text-[15px] font-semibold"
-              style={{ borderColor: "var(--cf-border)", background: "var(--cf-card)", color: "var(--cf-fg)" }}
-            >
-              Visit Legalizin.com <ArrowUpRight size={16} />
-            </motion.a>
-          </motion.div>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring, delay: 0.18 }}
+          className="mt-7 max-w-xl text-base leading-relaxed sm:text-lg"
+          style={{ color: "var(--cf-muted)" }}
+        >
+          PT Digitas Solusi Indonesia acts as an elite extension of your in-house team: high-fidelity product design, high-converting web experiences, growth architecture and resilient digital systems, shipped at scale.
+        </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ ...spring, delay: 0.2 }}
-          className="mx-auto w-full max-w-md lg:max-w-none"
-          style={{ ["--hairline-plate" as string]: "#09090b" }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring, delay: 0.26 }}
+          className="mt-9 flex flex-wrap items-center justify-center gap-3"
         >
-          <Router intensity={0.7} theme="dark" label="Interactive isometric router; antennas lean toward your pointer" />
+          <motion.a
+            href="#services"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.95 }}
+            transition={spring}
+            className="inline-flex h-12 items-center gap-2 rounded-full px-7 text-[15px] font-semibold"
+            style={{ background: "var(--cf-inv-bg)", color: "var(--cf-inv-fg)" }}
+          >
+            Explore capabilities <ArrowRight size={16} />
+          </motion.a>
+          <motion.a
+            href="#featured"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.95 }}
+            transition={spring}
+            className="inline-flex h-12 items-center gap-2 rounded-full border px-7 text-[15px] font-semibold"
+            style={{ borderColor: "var(--cf-border)", background: "var(--cf-card)", color: "var(--cf-fg)" }}
+          >
+            Featured Work <ArrowUpRight size={16} />
+          </motion.a>
         </motion.div>
       </div>
     </section>

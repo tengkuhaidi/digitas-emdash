@@ -83,7 +83,12 @@ const pageCtx = createPublicPageContext({
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const navItems = menu?.items?.length
-	? menu.items.map((i) => ({ label: i.label, url: i.url, target: i.target }))
+	? menu.items.map((i) =>
+			// ponytail: CMS menu still holds the old external link; remap here. Remove once the D1 menu is edited in Studio.
+			/legalizin\.com/i.test(i.url)
+				? { label: "Case Study", url: "/case-study/legalizin", target: undefined }
+				: { label: i.label, url: i.url, target: i.target },
+		)
 	: [
 			{ label: "Home", url: "/", target: undefined },
 			{ label: "Publications", url: "/posts", target: undefined },
@@ -203,7 +208,7 @@ const isLoggedIn = !!Astro.locals.user;
 					<p class="ft-sub">Whether you need a full product team, a specialized engineering squad, or growth architecture that ranks.</p>
 					<div class="ft-actions">
 						<a class="ft-btn ft-btn-primary" href="mailto:tengkuhaidi@gmail.com?subject=New%20project">Start a Project →</a>
-						<a class="ft-btn" href="https://legalizin.com" target="_blank" rel="noopener noreferrer">Explore Legalizin.com ↗</a>
+						<a class="ft-btn" href="/case-study/legalizin">View Case Study ↗</a>
 					</div>
 				</section>
 
@@ -229,7 +234,7 @@ const isLoggedIn = !!Astro.locals.user;
 					<nav class="ft-col" aria-label="Ventures">
 						<h3 class="ft-h">Ventures &amp; Ecosystem</h3>
 						<ul>
-							<li><a href="https://legalizin.com" target="_blank" rel="noopener noreferrer">Legalizin.com <small>Flagship RegTech</small></a></li>
+							<li><a href="/case-study/legalizin">Legalizin.com <small>Case study · Flagship RegTech</small></a></li>
 							<li><a href="/#services">Digitas Cloud</a></li>
 							<li><a href="/#services">Research Labs</a></li>
 						</ul>

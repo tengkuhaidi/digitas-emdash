@@ -1,0 +1,201 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const metrics = [
+	{ v: "< 20ms", l: "Edge response" },
+	{ v: "15+", l: "Automated workflows" },
+	{ v: "#1", l: "Google organic rankings" },
+	{ v: "100%", l: "Zero-egress cloud" },
+];
+const stack = ["Cloudflare Pages", "Cloudflare Workers", "D1 SQL", "R2 Storage", "Astro", "React", "TypeScript", "GA4", "Google Indexing API"];
+const pipeline = [
+	["01", "Intake", "Founder answers a short guided questionnaire: entity type, shareholders, capital, business activity."],
+	["02", "Classification", "Rules engine maps the answers to the right entity (PT, CV, PT PMA, Yayasan) and KBLI codes."],
+	["03", "Licensing", "OSS RBA risk-based licensing requirements are resolved and checklisted per activity."],
+	["04", "Documents", "Deed drafts and supporting documents are generated and stored in the client's private vault."],
+	["05", "Tracking", "Status updates flow back to the client until incorporation and licences are issued."],
+];
+---
+
+<Base
+	title="Legalizin.com Case Study | PT Digitas Solusi Indonesia"
+	description="How Digitas engineered Legalizin.com: an edge-native, automated LegalTech and compliance engine for Indonesian company formation and licensing."
+>
+	<article class="cs">
+		<header class="cs-hero">
+			<a href="/#featured" class="cs-back cf-mono">← Back to work</a>
+			<p class="cs-tag cf-mono">Case Study // LegalTech &amp; Compliance</p>
+			<h1 class="cf-display">Legalizin.com — Automated LegalTech &amp; Compliance Engine</h1>
+			<p class="cs-lede">
+				Digitas turned Indonesia's corporate formation and statutory licensing into an instantaneous digital product, from edge-native
+				infrastructure to a search engine that brings the clients in.
+			</p>
+			<div class="cs-actions">
+				<a href="https://legalizin.com" target="_blank" rel="noopener noreferrer" class="cs-btn cs-btn-primary">Visit Live Platform ↗</a>
+				<a href="mailto:tengkuhaidi@gmail.com?subject=Project%20like%20Legalizin" class="cs-btn">Start a similar project →</a>
+			</div>
+			<dl class="cs-metrics">
+				{metrics.map((m) => (
+					<div>
+						<dd class="cf-display">{m.v}</dd>
+						<dt class="cf-mono">{m.l}</dt>
+					</div>
+				))}
+			</dl>
+		</header>
+
+		<section class="cs-sec">
+			<p class="cs-n cf-mono">01 / Client &amp; Context</p>
+			<div class="cs-body">
+				<h2 class="cf-display">An industry built on paperwork.</h2>
+				<p>
+					Legalizin.com is an Indonesian RegTech platform that helps founders and businesses incorporate and license their companies:
+					PT, CV, PT PMA and Yayasan, plus the OSS RBA permits each business activity requires.
+				</p>
+				<p>
+					The mandate to Digitas was direct: replace the notary-office queue with a product. Fast to load, clear to follow, and
+					correct on the legal details.
+				</p>
+			</div>
+		</section>
+
+		<section class="cs-sec">
+			<p class="cs-n cf-mono">02 / The Problem</p>
+			<div class="cs-body">
+				<h2 class="cf-display">Complex rules, slow channels, invisible brand.</h2>
+				<ul class="cs-list">
+					<li><b>Opaque process.</b> Entity types, capital thresholds and licence classes are hard for first-time founders to navigate.</li>
+					<li><b>Manual back-office.</b> Every formation meant repeated data entry and document assembly by hand.</li>
+					<li><b>Weak discovery.</b> Customers search Google first; the incumbents owned those results.</li>
+					<li><b>Trust at stake.</b> Identity and corporate documents demand strict storage and access discipline.</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="cs-sec">
+			<p class="cs-n cf-mono">03 / Technical Architecture</p>
+			<div class="cs-body">
+				<h2 class="cf-display">Edge-native, serverless, zero egress.</h2>
+				<p>
+					The whole platform runs on Cloudflare's network. Pages and Workers serve and compute at the edge closest to the user, so
+					responses land in under 20ms. D1 holds relational state; R2 holds documents, with no egress fees on retrieval.
+				</p>
+				<ul class="cs-chips">
+					{stack.map((s) => <li class="cf-mono">{s}</li>)}
+				</ul>
+				<p>No servers to patch, no regional database to fail over, and a cost curve that stays flat as traffic grows.</p>
+			</div>
+		</section>
+
+		<section class="cs-sec">
+			<p class="cs-n cf-mono">04 / Frontend &amp; UX Craft</p>
+			<div class="cs-body">
+				<h2 class="cf-display">Legal complexity, one decision at a time.</h2>
+				<p>
+					The interface breaks formation into short, single-purpose steps with live validation and plain-language explanations of
+					every legal term. Fast first paint and minimal client JavaScript keep it usable on mid-range phones and patchy mobile data.
+				</p>
+				<p>
+					A consistent design system covers forms, status states and document views, so each new tool ships looking and behaving
+					like the rest.
+				</p>
+			</div>
+		</section>
+
+		<section class="cs-sec">
+			<p class="cs-n cf-mono">05 / Automated Compliance Pipeline</p>
+			<div class="cs-body cs-wide">
+				<h2 class="cf-display">15+ workflows, from intake to issued licence.</h2>
+				<p>Entity logic is encoded as deterministic rules rather than manual judgment, so every client gets the same verified answer.</p>
+				<ol class="cs-steps">
+					{pipeline.map(([n, t, d]) => (
+						<li>
+							<span class="cf-mono">{n}</span>
+							<div><h3 class="cf-display">{t}</h3><p>{d}</p></div>
+						</li>
+					))}
+				</ol>
+			</div>
+		</section>
+
+		<section class="cs-sec">
+			<p class="cs-n cf-mono">06 / SEO Engine</p>
+			<div class="cs-body">
+				<h2 class="cf-display">Search as infrastructure.</h2>
+				<p>
+					Organic growth was engineered, not hoped for. Structured content, technical SEO and schema markup make every page
+					eligible to rank; the Google Indexing API submits new and updated pages automatically at publish time.
+				</p>
+				<p>GA4 measurement closes the loop, showing which pages and tools turn searchers into paying clients.</p>
+			</div>
+		</section>
+
+		<section class="cs-sec">
+			<p class="cs-n cf-mono">07 / Measured Results</p>
+			<div class="cs-body">
+				<h2 class="cf-display">Outcomes.</h2>
+				<dl class="cs-results">
+					{metrics.map((m) => (
+						<div>
+							<dd class="cf-display">{m.v}</dd>
+							<dt class="cf-mono">{m.l}</dt>
+						</div>
+					))}
+				</dl>
+			</div>
+		</section>
+
+		<section class="cs-cta">
+			<h2 class="cf-display">Need a platform that ships like this?</h2>
+			<div class="cs-actions" style="justify-content:center">
+				<a href="mailto:tengkuhaidi@gmail.com?subject=New%20project" class="cs-btn cs-btn-primary">Start a Project →</a>
+				<a href="/#services" class="cs-btn">Explore capabilities</a>
+			</div>
+		</section>
+	</article>
+</Base>
+
+<style>
+	.cs { background: var(--cf-bg); color: var(--cf-fg); padding: 0 20px 80px; }
+	.cs-hero { max-width: 72rem; margin: 0 auto; padding: 9rem 0 4rem; border-bottom: 1px solid var(--cf-border);
+		background: radial-gradient(60% 50% at 50% 0%, var(--cf-glow), transparent 70%); }
+	.cs-back { font-size: 12px; color: var(--cf-dim) !important; }
+	.cs-back:hover { color: var(--cf-fg) !important; }
+	.cs-tag { margin: 2rem 0 1rem; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cf-accent); }
+	.cs-hero h1 { font-weight: 700; font-size: clamp(2.25rem, 6.5vw, 5rem); letter-spacing: -0.05em; line-height: 0.98; max-width: 16ch; text-wrap: balance; }
+	.cs-lede { margin-top: 1.75rem; max-width: 40rem; font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; color: var(--cf-muted); }
+	.cs-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+	.cs-btn { display: inline-flex; align-items: center; height: 48px; padding: 0 26px; border-radius: 999px; border: 1px solid var(--cf-border);
+		background: var(--cf-card); color: var(--cf-fg) !important; font-weight: 600; font-size: 15px; transition: transform 0.2s, background 0.2s; }
+	.cs-btn:hover { background: var(--cf-raised); }
+	.cs-btn:active { transform: scale(0.95); }
+	.cs-btn-primary { background: var(--cf-inv-bg); color: var(--cf-inv-fg) !important; border-color: var(--cf-inv-bg); }
+	.cs-btn-primary:hover { background: var(--cf-inv-bg); opacity: 0.88; }
+	.cs-metrics, .cs-results { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 3rem; overflow: hidden;
+		border: 1px solid var(--cf-border); border-radius: 20px; background: var(--cf-border); }
+	.cs-metrics > div, .cs-results > div { background: var(--cf-bg); padding: 22px 24px; }
+	.cs-metrics dd, .cs-results dd { margin: 0; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.4rem); letter-spacing: -0.04em; }
+	.cs-metrics dt, .cs-results dt { margin-top: 4px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cf-dim); }
+	.cs-sec { max-width: 72rem; margin: 0 auto; display: grid; gap: 1.25rem; padding: 4rem 0; border-bottom: 1px solid var(--cf-border); }
+	.cs-n { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cf-dim); }
+	.cs-body h2 { font-weight: 700; font-size: clamp(1.6rem, 3.6vw, 2.5rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.25rem; text-wrap: balance; }
+	.cs-body p { max-width: 42rem; line-height: 1.7; color: var(--cf-muted); margin-top: 1rem; }
+	.cs-list { list-style: none; display: grid; gap: 10px; margin-top: 1rem; padding: 0; max-width: 46rem; }
+	.cs-list li { padding: 16px 20px; border: 1px solid var(--cf-border); border-radius: 16px; background: var(--cf-card); color: var(--cf-muted); line-height: 1.55; }
+	.cs-list b { color: var(--cf-fg); }
+	.cs-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 1.5rem 0 0; padding: 0; }
+	.cs-chips li { padding: 5px 14px; border: 1px solid var(--cf-border); border-radius: 999px; font-size: 12px; color: var(--cf-muted); }
+	.cs-steps { list-style: none; display: grid; gap: 10px; margin: 2rem 0 0; padding: 0; }
+	.cs-steps li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 20px; border: 1px solid var(--cf-border); border-radius: 20px; background: var(--cf-card); }
+	.cs-steps li > span { font-size: 13px; color: var(--cf-accent); padding-top: 4px; }
+	.cs-steps h3 { font-weight: 600; font-size: 1.15rem; letter-spacing: -0.02em; }
+	.cs-steps p { margin-top: 4px; }
+	.cs-cta { max-width: 72rem; margin: 0 auto; text-align: center; padding: 5rem 0 1rem; }
+	.cs-cta h2 { font-weight: 700; font-size: clamp(1.8rem, 5vw, 3.25rem); letter-spacing: -0.045em; line-height: 1; text-wrap: balance; }
+	@media (min-width: 900px) {
+		.cs-metrics, .cs-results { grid-template-columns: repeat(4, 1fr); }
+		.cs-sec { grid-template-columns: 16rem 1fr; gap: 3rem; }
+		.cs-steps li { grid-template-columns: 60px 1fr; }
+	}
+	@media (max-width: 640px) { .cs-hero { padding-top: 7rem; } .cs-sec { padding: 3rem 0; } }
+</style>
