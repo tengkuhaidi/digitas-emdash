@@ -1,0 +1,105 @@
+---
+import {
+	getEmDashCollection,
+	getTermsForEntries,
+	getSiteSettings,
+} from "emdash";
+import Base from "../layouts/Base.astro";
+import PostCard from "../components/PostCard.astro";
+import { HeroInteractive } from "../components/HeroInteractive";
+import { EcosystemGrid } from "../components/EcosystemGrid";
+import { TechStackShowcase } from "../components/TechStackShowcase";
+import { resolveBlogSiteIdentity } from "../utils/site-identity";
+
+// Query latest articles from D1
+const [{ entries: posts, cacheHint }, settings] = await Promise.all([
+	getEmDashCollection("posts", {
+		orderBy: { published_at: "desc" },
+		limit: 6,
+	}),
+	getSiteSettings(),
+]);
+const { siteTitle, siteTagline } = resolveBlogSiteIdentity(settings);
+
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+// Hydrate tags for posts
+const tagEntryIds = posts.map((p) => p.data.id);
+const tagsByEntry = await getTermsForEntries("posts", tagEntryIds, "tag");
+
+const postsWithTags = posts.map((post) => ({
+	post,
+	tags: (tagsByEntry.get(post.data.id) ?? []).map((t) => ({
+		slug: t.slug,
+		label: t.label,
+	})),
+	bylines: post.data.bylines ?? [],
+}));
+---
+
+<Base title="PT Digitas Solusi Indonesia" description="Architecting Enterprise LegalTech & Resilient Cloud Infrastructure for Southeast Asia">
+	<!-- Interactive Hero Section with Framer Motion -->
+	<HeroInteractive client:load />
+
+	<!-- Holding Ecosystem Bento Grid -->
+	<EcosystemGrid client:visible />
+
+	<!-- Technical Infrastructure Pillars -->
+	<TechStackShowcase client:visible />
+
+	<!-- Corporate Insights & Research Section -->
+	<section class="py-16 md:py-24 border-t border-slate-800/80 bg-slate-950/20">
+		<div class="max-w-6xl mx-auto px-4">
+			<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+				<div>
+					<span class="text-xs uppercase font-bold tracking-widest text-sky-400 block mb-2 font-mono">
+						Institutional Publications
+					</span>
+					<h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+						Executive Insights & Regulatory Tech
+					</h2>
+				</div>
+				<a
+					href="/posts"
+					class="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors mt-4 sm:mt-0 font-mono"
+				>
+					View all research &rarr;
+				</a>
+			</div>
+
+			{posts.length === 0 ? (
+				<div class="text-center py-16 px-4 rounded-2xl border border-slate-800/80 bg-slate-900/40 max-w-xl mx-auto">
+					<div class="w-12 h-12 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center mx-auto mb-4 font-mono text-sm font-bold">
+						D1
+					</div>
+					<h3 class="text-lg font-bold text-white mb-2">Publishing Pipeline Connected</h3>
+					<p class="text-sm text-slate-400 leading-relaxed mb-6">
+						Cloudflare D1 database and R2 media bucket are fully migrated. Create your first whitepaper or research post directly through the EmDash admin panel.
+					</p>
+					<a
+						href="/_emdash/admin/content/posts/new"
+						class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold tracking-wide uppercase transition shadow-md shadow-sky-500/20"
+					>
+						Open Admin Studio
+					</a>
+				</div>
+			) : (
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{postsWithTags.map(({ post, tags, bylines }) => (
+						<PostCard
+							title={post.data.title ?? "Untitled"}
+							excerpt={post.data.excerpt}
+							featuredImage={post.data.featured_image}
+							href={`/posts/${post.id}`}
+							date={post.data.publishedAt ?? undefined}
+							readingTime={5}
+							tags={tags}
+							bylines={bylines}
+							edit={post.edit}
+						/>
+					))}
+				</div>
+			)}
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,75 @@
+/*
+  theme.css -- Theme overrides for PT Digitas Solusi Indonesia.
+*/
+
+:root {
+  /* High-register Institutional Holding Palette */
+  --color-brand: light-dark(#0284C7, #38BDF8);
+  --color-brand-hover: light-dark(#0369A1, #7DD3FC);
+  --color-on-brand: #080E1A;
+  --color-brand-ring: color-mix(in srgb, var(--color-brand) 30%, transparent);
+
+  --color-bg: light-dark(#F8FAFC, #070B14);
+  --color-bg-subtle: light-dark(#F1F5F9, #0D1322);
+  --color-surface: light-dark(#FFFFFF, #111A2E);
+  --color-text: light-dark(#0F172A, #F8FAFC);
+  --color-text-secondary: light-dark(#475569, #94A3B8);
+  --color-muted: light-dark(#64748B, #64748B);
+  --color-border: light-dark(#E2E8F0, #1E293B);
+  --color-border-subtle: light-dark(#F1F5F9, #131E33);
+
+  --font-heading: 'Plus Jakarta Sans', var(--font-body);
+  --font-weight-heading: 700;
+  --font-weight-display: 800;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+/* Nav & Header polish */
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.site-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.15rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-admin {
+  margin-inline-start: var(--spacing-4);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--color-brand);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Footer refinements */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.footer-copyright a {
+  color: var(--color-brand);
+  font-weight: 600;
+  text-decoration: none;
+}

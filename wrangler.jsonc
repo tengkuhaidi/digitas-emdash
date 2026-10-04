@@ -1,0 +1,23 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "digitas-emdash",
+	"main": "./src/worker.ts",
+	"compatibility_date": "2026-02-24",
+	"compatibility_flags": ["nodejs_compat"],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "digitas_db",
+			"database_id": "976dcb20-6abb-4bfe-a30a-44de92668061"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "digitas-media"
+		}
+	],
+	"triggers": {
+		"crons": ["* * * * *"]
+	}
+}
