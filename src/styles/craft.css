@@ -1,0 +1,39 @@
+/* Modern Craft palette. Dark default; html.light flips. Unlayered so it beats tokens/theme. */
+:root {
+  --cf-bg: #09090b;
+  --cf-card: #0c0c0f;
+  --cf-raised: #18181b;
+  --cf-border: #27272a;
+  --cf-fg: #fafafa;
+  --cf-muted: #a1a1aa;
+  --cf-dim: #71717a;
+  --cf-accent: #75cdd6;
+  --cf-inv-bg: #fafafa;
+  --cf-inv-fg: #09090b;
+  --cf-glow: rgba(117, 205, 214, 0.16);
+}
+:root.light {
+  --cf-bg: #fafafa;
+  --cf-card: #ffffff;
+  --cf-raised: #f4f4f5;
+  --cf-border: #e4e4e7;
+  --cf-fg: #09090b;
+  --cf-muted: #52525b;
+  --cf-dim: #71717a;
+  --cf-accent: #0e7490;
+  --cf-inv-bg: #09090b;
+  --cf-inv-fg: #fafafa;
+  --cf-glow: rgba(14, 116, 144, 0.14);
+  --color-bg: #fafafa;
+  --color-bg-subtle: #f4f4f5;
+  --color-surface: #f4f4f5;
+  --color-text: #09090b;
+  --color-text-secondary: #52525b;
+  --color-muted: #71717a;
+  --color-border: #e4e4e7;
+  --color-border-subtle: #e4e4e7;
+  --color-brand: #0e7490;
+}
+body { background: var(--cf-bg); color: var(--cf-fg); }
+.cf-display { font-family: var(--font-display, "Inter Tight", sans-serif); }
+.cf-mono { font-family: var(--font-mono, "JetBrains Mono", monospace); }

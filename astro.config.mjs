@@ -27,7 +27,7 @@ export default defineConfig({
 			provider: fontProviders.google(),
 			name: "Inter Tight",
 			cssVariable: "--font-display",
-			weights: [200, 300, 400],
+			weights: [200, 300, 400, 600, 700, 800],
 			fallbacks: ["sans-serif"],
 		},
 		{
