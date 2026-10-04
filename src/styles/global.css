@@ -1,1 +1,33 @@
 @import "tailwindcss";
+
+@theme {
+  /* Colors from DESIGN.md */
+  --color-cosmic-violet: #1b2978;
+  --color-twilight-indigo: #19366c;
+  --color-aurora-teal: #75cdd6;
+  --color-cyan-glow: #84cdee;
+  --color-cosmic-violet-wash: #3a3cb5;
+  --color-polar-white: #ffffff;
+  --color-obsidian: #000000;
+  --color-silver-slate: #7488a5;
+  --color-cerulean-mist: #579dc0;
+  --color-storm-shadow: #466187;
+
+  /* Typography Scale */
+  --text-caption: 10px;
+  --text-body: 16px;
+  --text-subheading: 20px;
+  --text-heading-sm: 26px;
+  --text-heading: 40px;
+  --text-display-sm: 50px;
+  --text-display: 60px;
+  --text-display-lg: 80px;
+
+  /* Border Radius */
+  --radius-pill: 20px;
+}
+
+/* Zero elevation rule from DESIGN.md */
+*, ::before, ::after {
+  box-shadow: none !important;
+}

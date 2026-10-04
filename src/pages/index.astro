@@ -48,37 +48,37 @@ const postsWithTags = posts.map((post) => ({
 	<TechStackShowcase client:visible />
 
 	<!-- Corporate Insights & Research Section -->
-	<section class="py-16 md:py-24 border-t border-slate-800/80 bg-[#070B14]">
+	<section class="py-20 md:py-28 border-t border-[#1b2978]/40 bg-[#070b14]">
 		<div class="max-w-6xl mx-auto px-4">
-			<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+			<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16">
 				<div>
-					<span class="text-xs uppercase font-bold tracking-widest text-sky-400 block mb-2 font-mono">
+					<span class="text-[10px] uppercase font-medium tracking-[0.32em] text-[#75cdd6] block mb-3 font-mono">
 						Institutional Publications
 					</span>
-					<h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+					<h2 class="text-3xl sm:text-4xl md:text-5xl font-extralight text-white tracking-[-0.03em]">
 						Executive Insights & Regulatory Tech
 					</h2>
 				</div>
 				<a
 					href="/posts"
-					class="inline-flex items-center gap-1.5 text-sm font-semibold text-sky-400 hover:text-sky-300 transition-colors mt-4 sm:mt-0 font-mono"
+					class="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-[#75cdd6] hover:text-white transition-colors mt-4 sm:mt-0 font-mono"
 				>
 					View all research &rarr;
 				</a>
 			</div>
 
 			{posts.length === 0 ? (
-				<div class="text-center py-16 px-4 rounded-2xl border border-slate-800/80 bg-slate-900/40 max-w-xl mx-auto">
-					<div class="w-12 h-12 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center mx-auto mb-4 font-mono text-sm font-bold">
+				<div class="text-center py-16 px-6 rounded-[20px] border border-[#1b2978]/60 bg-[#0c1424]/60 max-w-xl mx-auto">
+					<div class="w-10 h-10 rounded-[12px] bg-[#070b14] border border-[#1b2978]/60 text-[#75cdd6] flex items-center justify-center mx-auto mb-4 font-mono text-xs font-medium">
 						D1
 					</div>
-					<h3 class="text-lg font-bold text-white mb-2">Publishing Pipeline Connected</h3>
-					<p class="text-sm text-slate-400 leading-relaxed mb-6">
+					<h3 class="text-base font-medium text-white mb-2">Publishing Pipeline Connected</h3>
+					<p class="text-sm text-[#7488a5] leading-[1.4] mb-8 font-normal">
 						Cloudflare D1 database and R2 media bucket are fully migrated. Create your first whitepaper or research post directly through the EmDash admin panel.
 					</p>
 					<a
 						href="/_emdash/admin/content/posts/new"
-						class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold tracking-wide uppercase transition shadow-md shadow-sky-500/20"
+						class="inline-flex items-center justify-center px-6 py-3 rounded-[20px] border border-[#1b2978] hover:border-[#75cdd6] bg-transparent text-white hover:text-[#75cdd6] text-[11px] font-medium tracking-[0.16em] uppercase transition duration-300"
 					>
 						Open Admin Studio
 					</a>
