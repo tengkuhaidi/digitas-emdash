@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import type { ComponentType } from "react";
-import { Terminal, Laptop, Dish, Terrain, Branches, Vault } from "@lucasmarkes/hairline/react";
+import { Terminal, Phone, Laptop, Dish, Terrain, Branches, Vault } from "@lucasmarkes/hairline/react";
 
 const spring = { type: "spring", stiffness: 300, damping: 26 } as const;
 
@@ -17,6 +17,14 @@ const SERVICES: { n: string; title: string; body: string; tags: string[]; Fig: F
   },
   {
     n: "02",
+    title: "Mobile Apps Engineering",
+    body: "Native and cross-platform mobile apps with fluid 120fps gestures, offline-first sync, and rock-solid App Store & Play Store deployment.",
+    tags: ["React Native", "Flutter", "iOS & Android", "Swift", "Offline-first"],
+    Fig: Phone as Fig,
+    label: "Interactive isometric mobile phone",
+  },
+  {
+    n: "03",
     title: "Product UI/UX & Design Systems",
     body: "High-fidelity product design for dashboards, web apps and mobile, documented as systems your team can extend.",
     tags: ["Figma", "Dashboards", "Web apps", "Mobile UX"],
@@ -24,7 +32,7 @@ const SERVICES: { n: string; title: string; body: string; tags: string[]; Fig: F
     label: "Interactive isometric laptop",
   },
   {
-    n: "03",
+    n: "04",
     title: "Digital Marketing & Growth Architecture",
     body: "Search and measurement engineered as infrastructure: pages that rank, analytics you can trust, indexing on autopilot.",
     tags: ["SEO/SEM", "GA4 Analytics", "Organic search automation", "Instant Google indexing"],
@@ -32,7 +40,7 @@ const SERVICES: { n: string; title: string; body: string; tags: string[]; Fig: F
     label: "Interactive isometric satellite dish",
   },
   {
-    n: "04",
+    n: "05",
     title: "Brand Identity & Graphic Design",
     body: "Identities that hold up from favicon to pitch deck: logos, color systems and typography with clear rules.",
     tags: ["Logos", "Color systems", "Typography", "Pitch decks"],
@@ -40,7 +48,7 @@ const SERVICES: { n: string; title: string; body: string; tags: string[]; Fig: F
     label: "Interactive isometric terrain of pillars",
   },
   {
-    n: "05",
+    n: "06",
     title: "Technical Problem Solving & Autonomous Systems",
     body: "Messy workflow, tangled integration, manual process. We find the root, then automate it end to end.",
     tags: ["Automation", "Integrations", "Agents", "Pipelines"],
@@ -48,7 +56,7 @@ const SERVICES: { n: string; title: string; body: string; tags: string[]; Fig: F
     label: "Interactive isometric commit graph",
   },
   {
-    n: "06",
+    n: "07",
     title: "Legalizin.com",
     body: "Our flagship venture: Indonesia's premier automated RegTech engine, incubated and powered by Digitas.",
     tags: ["RegTech", "Company formation", "Compliance automation"],
@@ -67,7 +75,7 @@ export function ServicesShowcase() {
             Web, systems, design and growth. One team.
           </h2>
           <p className="mt-5 text-base leading-relaxed" style={{ color: "var(--cf-muted)" }}>
-            Move your pointer over any figure. Six disciplines, one extension of your in-house team.
+            Move your pointer over any figure. Seven disciplines, one extension of your in-house team.
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
