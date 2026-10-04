@@ -5,18 +5,16 @@ import {
 	getSiteSettings,
 } from "emdash";
 import Base from "../layouts/Base.astro";
-import PostCard from "../components/PostCard.astro";
-import { HeroInteractive } from "../components/HeroInteractive";
-import { MetricsSection } from "../components/MetricsSection";
-import { EcosystemGrid } from "../components/EcosystemGrid";
-import { TechStackShowcase } from "../components/TechStackShowcase";
+import { HeroAmaterasu } from "../components/HeroAmaterasu";
+import { EcosystemAmaterasu } from "../components/EcosystemAmaterasu";
+import { ArchitectureAmaterasu } from "../components/ArchitectureAmaterasu";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
 
 // Query latest articles from D1
 const [{ entries: posts, cacheHint }, settings] = await Promise.all([
 	getEmDashCollection("posts", {
 		orderBy: { published_at: "desc" },
-		limit: 6,
+		limit: 4,
 	}),
 	getSiteSettings(),
 ]);
@@ -39,69 +37,91 @@ const postsWithTags = posts.map((post) => ({
 ---
 
 <Base title="PT Digitas Solusi Indonesia" description="Architecting Enterprise LegalTech & Resilient Cloud Infrastructure for Southeast Asia">
-	<!-- Interactive Hero Atmosphere Section with Framer Motion & Scroll Cue -->
-	<HeroInteractive client:load />
+	<!-- Amaterasu Celestial Sanctuary Hero Atmosphere -->
+	<HeroAmaterasu client:load />
 
-	<!-- Key Metrics Section -->
-	<MetricsSection client:visible />
+	<!-- Amaterasu Editorial Ecosystem Register -->
+	<EcosystemAmaterasu client:visible />
 
-	<!-- Holding Ecosystem Bento Grid -->
-	<EcosystemGrid client:visible />
+	<!-- Amaterasu Architectural Infrastructure Pillars -->
+	<ArchitectureAmaterasu client:visible />
 
-	<!-- Technical Infrastructure Pillars -->
-	<TechStackShowcase client:visible />
-
-	<!-- Corporate Insights & Research Section -->
-	<section class="py-20 md:py-28 border-t border-[#1b2978]/40 bg-[#070b14]">
-		<div class="max-w-6xl mx-auto px-4">
-			<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16">
+	<!-- Editorial Insights & Research Section -->
+	<section class="py-28 px-6 sm:px-12 border-t border-[#1b2978]/40 bg-[#070b14]">
+		<div class="max-w-6xl mx-auto">
+			<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-20">
 				<div>
-					<span class="text-[10px] uppercase font-medium tracking-[0.32em] text-[#75cdd6] block mb-3 font-mono">
-						Institutional Publications
-					</span>
-					<h2 class="text-3xl sm:text-4xl md:text-5xl font-extralight text-white tracking-[-0.03em]">
-						Executive Insights & Regulatory Tech
+					<div class="flex items-center gap-3 mb-4">
+						<span class="w-1.5 h-1.5 rounded-full bg-[#75cdd6]" />
+						<span class="text-[10px] uppercase font-mono tracking-[0.32em] text-[#7488a5]">
+							03 / RESEARCH & INTELLIGENCE
+						</span>
+					</div>
+					<h2 
+						style={{
+							fontFamily: 'var(--font-display, "Inter Tight", sans-serif)',
+							fontWeight: 200,
+							letterSpacing: '-0.035em',
+							lineHeight: 1.05
+						}}
+						className="text-3xl sm:text-5xl md:text-6xl font-extralight text-white tracking-tight"
+					>
+						Frontier Publications & Regulatory Intelligence
 					</h2>
 				</div>
 				<a
 					href="/posts"
-					class="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-[#75cdd6] hover:text-white transition-colors mt-4 sm:mt-0 font-mono"
+					class="inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] border border-[#1b2978] hover:border-[#75cdd6] bg-transparent text-white hover:text-[#75cdd6] text-[10px] uppercase font-mono tracking-[0.2em] transition-all duration-300 mt-6 sm:mt-0"
 				>
-					View all research &rarr;
+					<span>ALL PUBLICATIONS</span>
+					<span>&rarr;</span>
 				</a>
 			</div>
 
 			{posts.length === 0 ? (
-				<div class="text-center py-16 px-6 rounded-[20px] border border-[#1b2978]/60 bg-[#0c1424]/60 max-w-xl mx-auto">
-					<div class="w-10 h-10 rounded-[12px] bg-[#070b14] border border-[#1b2978]/60 text-[#75cdd6] flex items-center justify-center mx-auto mb-4 font-mono text-xs font-medium">
-						D1
-					</div>
-					<h3 class="text-base font-medium text-white mb-2">Publishing Pipeline Connected</h3>
-					<p class="text-sm text-[#7488a5] leading-[1.4] mb-8 font-normal">
-						Cloudflare D1 database and R2 media bucket are fully migrated. Create your first whitepaper or research post directly through the EmDash admin panel.
+				<div class="py-16 border-t border-[#1b2978]/40">
+					<p class="text-sm text-[#7488a5] max-w-xl font-normal leading-relaxed">
+						Institutional research papers and architectural updates are currently queued for publication. Connect to EmDash Admin to deploy whitepapers.
 					</p>
-					<a
-						href="/_emdash/admin/content/posts/new"
-						class="inline-flex items-center justify-center px-6 py-3 rounded-[20px] border border-[#1b2978] hover:border-[#75cdd6] bg-transparent text-white hover:text-[#75cdd6] text-[11px] font-medium tracking-[0.16em] uppercase transition duration-300"
-					>
-						Open Admin Studio
-					</a>
+					<div class="mt-8">
+						<a
+							href="/_emdash/admin/content/posts/new"
+							class="inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] border border-[#1b2978] hover:border-[#75cdd6] bg-transparent text-white hover:text-[#75cdd6] text-[10px] uppercase font-mono tracking-[0.2em] transition duration-300"
+						>
+							Open Admin Studio
+						</a>
+					</div>
 				</div>
 			) : (
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div class="space-y-0">
 					{postsWithTags.map(({ post, tags, bylines }) => (
-						<PostCard
-							title={post.data.title ?? "Untitled"}
-							excerpt={post.data.excerpt}
-							featuredImage={post.data.featured_image}
-							href={`/posts/${post.id}`}
-							date={post.data.publishedAt ?? undefined}
-							readingTime={5}
-							tags={tags}
-							bylines={bylines}
-							edit={post.edit}
-						/>
+						<article class="group py-8 border-t border-[#1b2978]/40 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline hover:bg-[#0c1424]/30 transition-colors px-4 -mx-4">
+							<div class="md:col-span-3 text-[11px] font-mono text-[#7488a5] tracking-widest uppercase">
+								{post.data.publishedAt ? new Date(post.data.publishedAt).toISOString().split('T')[0] : "RECENT"}
+							</div>
+							<div class="md:col-span-7">
+								<a href={`/posts/${post.id}`} class="block">
+									<h3 class="text-lg sm:text-xl text-white font-light group-hover:text-[#75cdd6] transition-colors mb-2 tracking-[-0.01em]">
+										{post.data.title ?? "Untitled"}
+									</h3>
+									{post.data.excerpt && (
+										<p class="text-xs text-[#7488a5] line-clamp-2 leading-relaxed">
+											{post.data.excerpt}
+										</p>
+									)}
+								</a>
+							</div>
+							<div class="md:col-span-2 flex md:justify-end">
+								<a
+									href={`/posts/${post.id}`}
+									class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#579dc0] group-hover:text-[#75cdd6] transition-colors"
+								>
+									READ PAPER &rarr;
+								</a>
+							</div>
+						</article>
 					))}
+					<div class="border-t border-[#1b2978]/40" />
 				</div>
 			)}
 		</div>
