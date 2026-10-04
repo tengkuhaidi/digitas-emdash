@@ -7,6 +7,34 @@ const spring = { type: "spring", stiffness: 260, damping: 24 } as const;
 export function HeroCraft() {
   return (
     <section className="relative isolate overflow-hidden px-5 pt-32 pb-16 sm:pt-40 sm:pb-24" style={{ background: "var(--cf-bg)" }}>
+      {/* Particle head atmosphere: lighten blend drops true-black box; masks feather every edge */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-full opacity-[0.28] sm:opacity-45 lg:w-[78%] lg:opacity-70"
+        style={{
+          maskImage: "radial-gradient(ellipse 70% 75% at 55% 48%, #000 25%, transparent 78%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 75% at 55% 48%, #000 25%, transparent 78%)",
+        }}
+      >
+        <img
+          src="/images/hero-particle-head.webp"
+          alt=""
+          width={1200}
+          height={673}
+          decoding="async"
+          fetchPriority="low"
+          className="h-full w-full object-cover object-[60%_center] mix-blend-lighten"
+        />
+      </div>
+      {/* Left-side legibility scrim (desktop) + top/bottom melt into canvas */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(90deg, #09090b 0%, rgba(9,9,11,0.88) 28%, rgba(9,9,11,0.35) 52%, transparent 70%), linear-gradient(180deg, #09090b 0%, transparent 18%, transparent 78%, #09090b 100%)",
+        }}
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px]"
