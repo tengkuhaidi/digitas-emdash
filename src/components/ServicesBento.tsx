@@ -76,7 +76,6 @@ export function ServicesBento() {
     <section id="services" className="px-5 py-20 sm:py-28" style={{ background: "var(--cf-bg)" }}>
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 max-w-2xl">
-          <p className="cf-mono mb-4 text-xs uppercase tracking-widest" style={{ color: "var(--cf-accent)" }}>Capabilities</p>
           <h2 className="cf-display text-balance" style={{ fontWeight: 700, fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "-0.045em", lineHeight: 1, color: "var(--cf-fg)" }}>
             Web, systems, design and growth. One team.
           </h2>

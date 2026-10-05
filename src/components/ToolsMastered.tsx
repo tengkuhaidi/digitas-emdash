@@ -76,9 +76,6 @@ export function ToolsMastered() {
     <section id="tools" className="relative py-20 sm:py-28 overflow-hidden" style={{ background: "var(--cf-bg)" }}>
       <div className="mx-auto max-w-5xl px-6 flex flex-col items-center">
         {/* Kargul-style Centered Eyebrow & Title */}
-        <p className="cf-mono text-xs uppercase tracking-[0.24em] text-cyan-400 mb-3 text-center">
-          STACK &amp; INFRASTRUCTURE
-        </p>
         <h2
           className="cf-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-center max-w-md mb-10 sm:mb-12"
           style={{ color: "var(--cf-fg)" }}

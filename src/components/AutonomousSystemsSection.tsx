@@ -17,16 +17,14 @@ const STEPS: Step[] = [
   {
     n: "01",
     tag: "DIAGNOSIS & ROOT CAUSE",
-    title: "Identify What Actually Matters",
-    sub: "Start with the operational bottleneck, not assumptions.",
-    body: "We do not recommend new tools or redesigns on day one. We audit user funnels, transaction drop-offs, and manual staff handoffs to pinpoint why operations slow down — and what it truly costs.",
-    deliverables: ["Bottleneck Map", "Root Cause Audit", "Data Tracing"],
+    title: "Audit the Real Operational Bottleneck",
+    body: "Operational friction rarely starts where people think. We trace the handoffs across your team, spreadsheets, and legacy systems to isolate the exact constraint slowing down growth.",
+    deliverables: ["Root-Cause Audit", "Process Flow", "Bottleneck Spec"],
   },
   {
     n: "02",
     tag: "PROBLEM DECOMPOSITION",
     title: "Decompose Friction Into Clear Sub-Systems",
-    sub: "Break monolithic business delays into structured components.",
     body: "Operational delays rarely have a single cause. We isolate approval stalls, redundant spreadsheet handoffs, and silent database sync failures into measurable, actionable friction points.",
     deliverables: ["Friction Matrix", "Sub-Systems", "Logic Mapping"],
   },
@@ -34,7 +32,6 @@ const STEPS: Step[] = [
     n: "03",
     tag: "SOLUTION DESIGN & ARCHITECTURE",
     title: "Design the Leanest System Architecture",
-    sub: "Build around operational behavior, not decorative wireframes.",
     body: "We architect the leanest technical remedy: whether that means an asynchronous webhook worker, legacy API bridge, or a clean role-based interface built for speed and clarity.",
     deliverables: ["Event Specs", "API Contracts", "Clean UX Flow"],
   },
@@ -42,7 +39,6 @@ const STEPS: Step[] = [
     n: "04",
     tag: "ENGINEERING & EXECUTION",
     title: "Implement Without Reworking Your Stack",
-    sub: "Ship production pipelines that integrate existing software.",
     body: "We build and deploy event-driven edge pipelines that connect your current databases and legacy tools. Automated retries, data encryption, and tamper-evident audit logs run out of the box.",
     deliverables: ["Edge Workers", "ERP Sync", "Auto Pipelines"],
   },
@@ -50,7 +46,6 @@ const STEPS: Step[] = [
     n: "05",
     tag: "CONTINUOUS OBSERVABILITY",
     title: "Monitor, Measure, and Iterate Live",
-    sub: "We stay to track telemetry and keep operations optimal.",
     body: "Going live is just day one. We monitor conversion health, processing latencies, and transaction error rates in production, optimizing the workflow as your transaction volume scales.",
     deliverables: ["Telemetry SLA", "Health Monitor", "Live Tuning"],
   },
@@ -90,10 +85,6 @@ export function AutonomousSystemsSection() {
           {/* Left Column: Sticky Narrative Anchor */}
           <div className="lg:col-span-5 lg:sticky lg:top-28 flex flex-col justify-between self-start">
             <div>
-              <p className="cf-mono text-[11px] uppercase tracking-[0.24em] text-cyan-400 mb-3">
-                SYSTEM THINKING
-              </p>
-
               <h2
                 className="cf-display text-balance font-bold tracking-tight text-3xl sm:text-5xl lg:text-[44px] leading-[1.08]"
                 style={{ color: "var(--cf-fg)" }}
@@ -121,26 +112,6 @@ export function AutonomousSystemsSection() {
               </div>
 
               {/* Progress Stepper Bar */}
-              <div className="mt-8 hidden lg:flex items-center gap-2">
-                {STEPS.map((s, idx) => {
-                  const isActive = idx === activeStep;
-                  const isPassed = idx < activeStep;
-                  return (
-                    <div
-                      key={s.n}
-                      className="h-1.5 flex-1 rounded-full transition-all duration-300"
-                      style={{
-                        background: isActive
-                          ? "var(--cf-accent, #06b6d4)"
-                          : isPassed
-                          ? "var(--cf-fg)"
-                          : "var(--cf-border)",
-                        opacity: isActive ? 1 : isPassed ? 0.6 : 0.25,
-                      }}
-                    />
-                  );
-                })}
-              </div>
             </div>
           </div>
 
@@ -175,12 +146,6 @@ export function AutonomousSystemsSection() {
                         {step.tag}
                       </span>
                     </div>
-                    {isActive && (
-                      <span className="cf-mono text-[10px] uppercase tracking-wider text-cyan-400 hidden sm:inline-flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                        In View
-                      </span>
-                    )}
                   </div>
 
                   <h3
@@ -189,10 +154,6 @@ export function AutonomousSystemsSection() {
                   >
                     {step.title}
                   </h3>
-
-                  <p className="mt-2 text-sm sm:text-[15px] font-medium leading-relaxed text-cyan-400">
-                    {step.sub}
-                  </p>
 
                   <p className="mt-4 text-sm sm:text-base leading-relaxed" style={{ color: "var(--cf-muted)" }}>
                     {step.body}
