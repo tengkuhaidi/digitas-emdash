@@ -10,6 +10,7 @@ import { ClientMarquee } from "../components/ClientMarquee";
 import { ServicesBento } from "../components/ServicesBento";
 import { AutonomousSystemsSection } from "../components/AutonomousSystemsSection";
 import { ProjectSpotlights } from "../components/ProjectSpotlights";
+import { ToolsMastered } from "../components/ToolsMastered";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
 
 // Query latest articles from D1
@@ -44,6 +45,7 @@ const postsWithTags = posts.map((post) => ({
 	<ServicesBento client:visible />
 	<AutonomousSystemsSection client:visible />
 	<ProjectSpotlights client:visible />
+	<ToolsMastered client:visible />
 
 	<section class="px-5 py-20 sm:py-28" style="background: var(--cf-bg)">
 		<div class="mx-auto max-w-5xl">
