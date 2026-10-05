@@ -7,11 +7,7 @@ interface Project {
   client: string;
   metric: string;
   impactHook: string;
-  attribution: string;
   img: string;
-  url: string;
-  linkText: string;
-  linkHref: string;
 }
 
 const PROJECTS: Project[] = [
@@ -20,36 +16,24 @@ const PROJECTS: Project[] = [
     id: "legalizin",
     client: "LEGALIZIN",
     metric: "< 20ms",
-    impactHook: "sub-20ms corporate formation and statutory licensing platform running completely serverless on the edge.",
-    attribution: "Tengku Haidi · Founder & Lead Systems Architect",
+    impactHook: "serverless edge platform automating corporate licensing nationwide.",
     img: "/images/case-study/legalizin-preview.png",
-    url: "https://legalizin.com",
-    linkText: "View platform",
-    linkHref: "https://legalizin.com",
   },
   {
     n: "02",
     id: "vms",
     client: "VMS ENTERPRISE",
     metric: "99.4%",
-    impactHook: "instant national ID recognition via computer vision, eliminating lobby queue congestion across commercial towers.",
-    attribution: "Commercial PropTech & Security Systems",
+    impactHook: "national ID recognition via computer vision, clearing tower lobby queues.",
     img: "/images/case-study/vms-enterprise.png",
-    url: "https://vms.digitas.id",
-    linkText: "View system",
-    linkHref: "https://vms.digitas.id",
   },
   {
     n: "03",
     id: "doc-tracking",
     client: "METROPOLITAN KENTJANA",
     metric: "100%",
-    impactHook: "tamper-evident audit trail and cryptographic workflow routing governing mission-critical physical files.",
-    attribution: "PT Metropolitan Kentjana Tbk · Pondok Indah Group",
+    impactHook: "tamper-evident audit trail governing mission-critical corporate files.",
     img: "/images/case-study/metropolitan-kentjana-doc-tracking.png",
-    url: "https://tracking.mkentjana.co.id",
-    linkText: "View case study",
-    linkHref: "#method",
   },
 ];
 
@@ -171,22 +155,23 @@ export function ProjectSpotlights() {
             <article
               key={project.id}
               data-spotlight-card
-              className="group snap-start shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl"
+              className="group snap-start shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950"
               style={{
-                background: "var(--cf-card)",
                 borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
               }}
             >
-              {/* Full-bleed media visual */}
-              <img
-                src={project.img}
-                alt={project.client}
-                className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                loading="lazy"
-              />
+              {/* Media image centered and fitted */}
+              <div className="w-full h-full p-4 sm:p-8 flex items-center justify-center">
+                <img
+                  src={project.img}
+                  alt={project.client}
+                  className="w-full h-full object-contain object-center rounded-xl transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                  loading="lazy"
+                />
+              </div>
 
-              {/* Clean Cinematic Gradient Scrim (No Browser Chrome) */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/30" />
+              {/* Clean Cinematic Gradient Scrim */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30" />
 
               {/* Top-Left: Pure Client Brand Lockup */}
               <div className="absolute top-6 left-6 sm:top-8 sm:left-8">
@@ -195,36 +180,33 @@ export function ProjectSpotlights() {
                 </span>
               </div>
 
-              {/* Bottom-Left: Punchy Metric + Hook + Attribution + Button */}
+              {/* Bottom-Left: Punchy Single-Sentence Metric Hook */}
               <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 max-w-xl text-left">
-                {/* Big Bold Impact Hook */}
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-white leading-snug drop-shadow-md">
+                <h3 className="text-xl sm:text-2xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-md">
                   <span className="font-bold text-white tracking-tight mr-2 underline decoration-cyan-400/80 decoration-2 underline-offset-4">
                     {project.metric}
                   </span>
                   {project.impactHook}
                 </h3>
-
-                {/* Subtitle Attribution */}
-                <p className="mt-3 text-xs sm:text-sm text-zinc-300 font-medium">
-                  {project.attribution}
-                </p>
-
-                {/* Sleek Pill Button */}
-                <div className="mt-5">
-                  <a
-                    href={project.linkHref}
-                    target={project.linkHref.startsWith("http") ? "_blank" : undefined}
-                    rel={project.linkHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/15 hover:border-white/30"
-                  >
-                    {project.linkText} <ArrowUpRight className="w-4 h-4 text-white/70" />
-                  </a>
-                </div>
               </div>
             </article>
           );
         })}
+      </div>
+
+      {/* Single Clean "View all projects" CTA Button */}
+      <div className="mt-12 flex justify-center">
+        <a
+          href="/case-study/legalizin"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 border hover:bg-white/10 shadow-lg"
+          style={{
+            background: "var(--cf-card)",
+            borderColor: "var(--cf-border)",
+            color: "var(--cf-fg)",
+          }}
+        >
+          View all projects <ArrowUpRight className="w-4 h-4 text-cyan-400" />
+        </a>
       </div>
     </section>
   );
