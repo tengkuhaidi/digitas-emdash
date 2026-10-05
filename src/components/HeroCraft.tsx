@@ -1,29 +1,22 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { InteractiveParticleHero } from "./InteractiveParticleHero";
 
 const spring = { type: "spring", stiffness: 260, damping: 24 } as const;
 
 export function HeroCraft() {
   return (
     <section className="relative isolate overflow-hidden px-5 pt-36 pb-24 sm:pt-44 sm:pb-32" style={{ background: "var(--cf-bg)" }}>
-      {/* Particle head centered behind text: lighten blend drops true-black box; radial mask feathers every edge */}
+      {/* Interactive particle head sampled from hero-particle-head.webp; listens on this section */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-40 sm:opacity-55 lg:opacity-65"
+        className="pointer-events-none absolute inset-0 -z-10"
         style={{
-          maskImage: "radial-gradient(ellipse 55% 60% at 50% 50%, #000 20%, transparent 75%)",
-          WebkitMaskImage: "radial-gradient(ellipse 55% 60% at 50% 50%, #000 20%, transparent 75%)",
+          maskImage: "radial-gradient(ellipse 70% 75% at 50% 50%, #000 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 75% at 50% 50%, #000 30%, transparent 80%)",
         }}
       >
-        <img
-          src="/images/hero-particle-head.webp"
-          alt=""
-          width={1200}
-          height={673}
-          decoding="async"
-          fetchPriority="low"
-          className="h-auto w-[170%] max-w-none object-contain mix-blend-lighten sm:w-[125%] lg:w-[900px]"
-        />
+        <InteractiveParticleHero />
       </div>
       {/* Soft center scrim for legibility + top/bottom melt into canvas */}
       <div
