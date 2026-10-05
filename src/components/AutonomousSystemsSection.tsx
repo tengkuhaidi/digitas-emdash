@@ -17,42 +17,42 @@ const STEPS: Step[] = [
   {
     n: "01",
     tag: "DIAGNOSIS & ROOT CAUSE",
-    title: "Bedah & Analisa Masalah Bisnis",
-    sub: "Start with the real bottleneck, not assumptions.",
-    body: "Kami tidak langsung menyuruh Anda ganti sistem atau bikin fitur baru. Kami turun langsung membedah alur operasional, data analytics, rekaman transaksi, hingga interview tim di lapangan untuk menemukan akar masalah sebenarnya — dan mengapa itu terjadi.",
-    deliverables: ["Operational Bottleneck Map", "Root Cause Analysis", "Cost & Friction Audit"],
+    title: "Identify What Actually Matters",
+    sub: "Start with the operational bottleneck, not assumptions.",
+    body: "We do not recommend new tools or redesigns on day one. We audit user funnels, transaction drop-offs, and manual staff handoffs to pinpoint why operations slow down — and what it truly costs.",
+    deliverables: ["Bottleneck Map", "Root Cause Audit", "Data Tracing"],
   },
   {
     n: "02",
     tag: "PROBLEM DECOMPOSITION",
-    title: "Pecah Masalah ke Sub-Sistem Terukur",
-    sub: "Break monolithic issues into actionable friction points.",
-    body: "Masalah besar yang rumit kami urai menjadi sub-sub masalah spesifik: apakah ini bottleneck di proses approval lambat, data ganda antar spreadsheet, atau sistem legasi yang tidak bisa kirim data otomatis. Tiap sub-masalah dipetakan dengan metrik yang jelas.",
-    deliverables: ["Sub-Problem Architecture", "Data Flow Blueprint", "Impact vs Effort Matrix"],
+    title: "Decompose Friction Into Clear Sub-Systems",
+    sub: "Break monolithic business delays into structured components.",
+    body: "Operational delays rarely have a single cause. We isolate approval stalls, redundant spreadsheet handoffs, and silent database sync failures into measurable, actionable friction points.",
+    deliverables: ["Friction Matrix", "Sub-Systems", "Logic Mapping"],
   },
   {
     n: "03",
     tag: "SOLUTION DESIGN & ARCHITECTURE",
-    title: "Rancang Solusi Sistem & Alur Terbaik",
-    sub: "Design for behavioral outcomes, not just wireframes.",
-    body: "Kami merumuskan arsitektur solusi yang paling efisien: apakah cukup dengan integrasi event-driven API, otomatisasi worker latar belakang, atau antarmuka baru. Desain dibangun berorientasi pada kemudahan manusia yang menggunakannya.",
-    deliverables: ["Event-Driven Workflow Specs", "System Integration Architecture", "Zero-Friction UX Flows"],
+    title: "Design the Leanest System Architecture",
+    sub: "Build around operational behavior, not decorative wireframes.",
+    body: "We architect the leanest technical remedy: whether that means an asynchronous webhook worker, legacy API bridge, or a clean role-based interface built for speed and clarity.",
+    deliverables: ["Event Specs", "API Contracts", "Clean UX Flow"],
   },
   {
     n: "04",
     tag: "ENGINEERING & EXECUTION",
-    title: "Implementasi & Integrasi Tanpa Rewriting",
-    sub: "Build and deploy production-grade pipelines.",
-    body: "Kami mengeksekusi pembangunan sistem, mengintegrasikan sistem legasi atau database ERP Anda yang sudah ada tanpa perlu merombak dari nol. Pipeline berjalan otomatis dengan retry mechanism, enkripsi, dan audit trail yang reliabel.",
-    deliverables: ["Edge API & Microservices", "Automated Background Workers", "Legacy ERP Sync"],
+    title: "Implement Without Reworking Your Stack",
+    sub: "Ship production pipelines that integrate existing software.",
+    body: "We build and deploy event-driven edge pipelines that connect your current databases and legacy tools. Automated retries, data encryption, and tamper-evident audit logs run out of the box.",
+    deliverables: ["Edge Workers", "ERP Sync", "Auto Pipelines"],
   },
   {
     n: "05",
-    tag: "CONTINUOUS OBSERVABILITY & OPTIMIZATION",
-    title: "Pemantauan & Optimasi Berkelanjutan",
-    sub: "We stay to measure, observe, and keep operations optimal.",
-    body: "Pekerjaan kami tidak berhenti saat sistem live. Kami terus memantau telemetri operasional, tingkat konversi, waktu proses, hingga beban tim Anda. Kami lakukan penyesuaian iteratif agar sistem bisnis Anda tetap optimal seiring pertumbuhan skala usaha.",
-    deliverables: ["Live Telemetry & Health Monitor", "Performance SLA Tracking", "Iterative Optimization"],
+    tag: "CONTINUOUS OBSERVABILITY",
+    title: "Monitor, Measure, and Iterate Live",
+    sub: "We stay to track telemetry and keep operations optimal.",
+    body: "Going live is just day one. We monitor conversion health, processing latencies, and transaction error rates in production, optimizing the workflow as your transaction volume scales.",
+    deliverables: ["Telemetry SLA", "Health Monitor", "Live Tuning"],
   },
 ];
 
@@ -87,15 +87,12 @@ export function AutonomousSystemsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
-          {/* Left Column: Sticky Narrative Anchor ala Eleken */}
+          {/* Left Column: Sticky Narrative Anchor */}
           <div className="lg:col-span-5 lg:sticky lg:top-28 flex flex-col justify-between self-start">
             <div>
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                <p className="cf-mono text-[11px] uppercase tracking-[0.22em] text-cyan-400">
-                  METHODOLOGY // SYSTEM THINKING
-                </p>
-              </div>
+              <p className="cf-mono text-[11px] uppercase tracking-[0.24em] text-cyan-400 mb-3">
+                SYSTEM THINKING
+              </p>
 
               <h2
                 className="cf-display text-balance font-bold tracking-tight text-3xl sm:text-5xl lg:text-[44px] leading-[1.08]"
@@ -105,7 +102,7 @@ export function AutonomousSystemsSection() {
               </h2>
 
               <p className="mt-6 text-base sm:text-lg leading-relaxed" style={{ color: "var(--cf-muted)" }}>
-                Di Digitas, kami tidak sekadar membuat tampilan. Kami menganalisa bisnis Anda dari akar masalah, mengurai tiap friksi, merancang dan mengimplementasikan solusinya, lalu tetap mendampingi agar operasional Anda selalu optimal.
+                At Digitas, we do not start with superficial mockups. We audit the friction in your operations, isolate each bottleneck, engineer the automated fix, and stay to ensure performance never slips.
               </p>
 
               {/* Interactive Isometric Branches Plate */}
@@ -201,7 +198,7 @@ export function AutonomousSystemsSection() {
                     {step.body}
                   </p>
 
-                  {/* Deliverables / Output Pills */}
+                  {/* Deliverables / Output Pills - Single Line Strictly */}
                   <div className="mt-8 pt-6 border-t" style={{ borderColor: "var(--cf-border)" }}>
                     <p className="cf-mono text-[10px] uppercase tracking-wider mb-3" style={{ color: "var(--cf-dim)" }}>
                       OUTPUT &amp; DELIVERABLES
@@ -210,7 +207,7 @@ export function AutonomousSystemsSection() {
                       {step.deliverables.map((deliv) => (
                         <span
                           key={deliv}
-                          className="cf-mono text-xs px-3 py-1.5 rounded-xl border transition-colors"
+                          className="cf-mono text-xs px-3 py-1.5 rounded-xl border whitespace-nowrap transition-colors"
                           style={{
                             borderColor: isActive ? "rgba(6, 182, 212, 0.3)" : "var(--cf-border)",
                             background: "var(--cf-bg)",
