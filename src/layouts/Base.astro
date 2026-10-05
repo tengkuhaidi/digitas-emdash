@@ -134,8 +134,14 @@ const isLoggedIn = !!Astro.locals.user;
 		<EmDashBodyStart page={pageCtx} />
 		<header class="cf-header">
 			<a href="/" class="cf-cap cf-brand" aria-label={siteTitle}>
-				<img src="/logo-digitas-dark.png" alt="Digitas" width="448" height="217" class="cf-logo cf-logo-dark" />
-				<img src="/logo-digitas.png" alt="Digitas" width="448" height="215" class="cf-logo cf-logo-light" />
+				<img
+					src="/favicon.png"
+					alt="Digitas Solusi Indonesia"
+					width="26"
+					height="26"
+					class="cf-brand-icon object-contain"
+				/>
+				<span class="cf-brand-text">Digitas</span>
 			</a>
 
 			<nav class="cf-cap cf-pillnav" aria-label="Primary">
@@ -218,8 +224,15 @@ const isLoggedIn = !!Astro.locals.user;
 				<div class="ft-grid">
 					<div class="ft-col ft-brand">
 						<a href="/" class="ft-logo" aria-label="Digitas home">
-							<img src="/logo-digitas-dark.png" alt="Digitas" width="448" height="217" class="cf-logo-dark" loading="lazy" />
-							<img src="/logo-digitas.png" alt="Digitas" width="448" height="215" class="cf-logo-light" loading="lazy" />
+							<img
+								src="/favicon.png"
+								alt="Digitas Solusi Indonesia"
+								width="28"
+								height="28"
+								class="footer-brand-icon object-contain"
+								loading="lazy"
+							/>
+							<span class="footer-brand-name">Digitas</span>
 						</a>
 						<p class="ft-company">PT Digitas Solusi Indonesia</p>
 						<p class="ft-mission">Engineering studio building resilient products, systems and growth infrastructure from Jakarta.</p>
@@ -546,10 +559,11 @@ const isLoggedIn = !!Astro.locals.user;
 				-webkit-backdrop-filter: blur(18px) saturate(1.4);
 				box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
 			}
-			.cf-brand { justify-self: start; padding: 0 18px; color: var(--cf-fg) !important; }
-			.cf-logo { height: 24px; width: auto; display: block; }
-			.ft-logo { display: inline-block; }
-			.ft-logo img { height: 34px; width: auto; display: block; }
+			.cf-brand { justify-self: start; padding: 0 16px; color: var(--cf-fg) !important; display: inline-flex; align-items: center; gap: 9px; }
+			.cf-brand-icon { width: 22px; height: 22px; display: block; object-fit: contain; }
+			.ft-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+			.footer-brand-icon { width: 26px; height: 26px; display: block; object-fit: contain; }
+			.footer-brand-name { font: 700 18px/1 var(--font-display, sans-serif); color: var(--cf-fg); letter-spacing: -0.02em; }
 			.cf-logo-light { display: none !important; }
 			:root.light .cf-logo-dark { display: none !important; }
 			:root.light .cf-logo-light { display: block !important; }
