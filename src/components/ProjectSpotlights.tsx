@@ -8,6 +8,8 @@ interface Project {
   metric: string;
   impactHook: string;
   img: string;
+  attribution: string;
+  href: string;
 }
 
 const PROJECTS: Project[] = [
@@ -18,6 +20,8 @@ const PROJECTS: Project[] = [
     metric: "< 20ms",
     impactHook: "serverless edge platform automating corporate licensing nationwide.",
     img: "/images/case-study/legalizin-preview.png",
+    attribution: "Tengku Haidi · Lead Systems Architect",
+    href: "/case-study/legalizin",
   },
   {
     n: "02",
@@ -26,6 +30,8 @@ const PROJECTS: Project[] = [
     metric: "99.4%",
     impactHook: "national ID recognition via computer vision, clearing tower lobby queues.",
     img: "/images/case-study/vms-enterprise.png",
+    attribution: "Commercial PropTech & Security Systems",
+    href: "/case-study/legalizin",
   },
   {
     n: "03",
@@ -34,6 +40,8 @@ const PROJECTS: Project[] = [
     metric: "100%",
     impactHook: "tamper-evident audit trail governing mission-critical corporate files.",
     img: "/images/case-study/metropolitan-kentjana-doc-tracking.png",
+    attribution: "PT Metropolitan Kentjana Tbk · Pondok Indah Group",
+    href: "/case-study/legalizin",
   },
 ];
 
@@ -104,12 +112,12 @@ export function ProjectSpotlights() {
       className="relative py-16 sm:py-24 lg:py-32 overflow-x-clip"
       style={{ background: "var(--cf-bg)" }}
     >
-      {/* Container aligned Header */}
+      {/* Container aligned Header - Exactly following TryProfound */}
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="flex items-start md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-10 border-b" style={{ borderColor: "var(--cf-border)" }}>
-          <div className="max-w-2xl pr-2">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 sm:pb-10 border-b" style={{ borderColor: "var(--cf-border)" }}>
+          <div className="max-w-2xl">
             <h2
-              className="cf-display text-2xl sm:text-4xl lg:text-[46px] font-semibold tracking-tight leading-[1.12]"
+              className="cf-display text-3xl sm:text-5xl lg:text-[46px] font-semibold tracking-tight leading-[1.12]"
               style={{ color: "var(--cf-fg)" }}
             >
               Engineered for systems with higher standards.
@@ -122,13 +130,13 @@ export function ProjectSpotlights() {
             </p>
           </div>
 
-          {/* Arrow Controls: 44px on mobile (min touch target), 56px on desktop */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0 self-start md:self-end pt-1 md:pt-0">
+          {/* TryProfound-style Arrow Controls: Aligned right */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 self-end md:self-end">
             <button
               onClick={handlePrev}
               disabled={!canGoPrev}
               aria-label="Previous story"
-              className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
+              className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
               style={{
                 background: canGoPrev ? "var(--cf-card)" : "transparent",
                 borderColor: "var(--cf-border)",
@@ -143,7 +151,7 @@ export function ProjectSpotlights() {
               onClick={handleNext}
               disabled={!canGoNext}
               aria-label="Next story"
-              className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
+              className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
               style={{
                 background: canGoNext ? "var(--cf-raised)" : "transparent",
                 borderColor: "var(--cf-border)",
@@ -158,10 +166,10 @@ export function ProjectSpotlights() {
         </div>
       </div>
 
-      {/* Offside Bleed Carousel Track */}
+      {/* Offside Bleed Carousel Track - 1:1 TryProfound Card Style */}
       <div
         ref={trackRef}
-        className="mt-6 sm:mt-10 flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto scrollbar-none pt-2 pb-6 snap-x snap-mandatory"
+        className="mt-8 sm:mt-10 flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto scrollbar-none pt-2 pb-6 snap-x snap-mandatory"
         style={{
           paddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.5rem))",
           paddingRight: "max(1.25rem, 8vw)",
@@ -174,42 +182,52 @@ export function ProjectSpotlights() {
             <article
               key={project.id}
               data-spotlight-card
-              className="group shrink-0 w-[88vw] sm:w-[75vw] lg:w-[860px] flex flex-col md:block md:aspect-[16/9.5] rounded-2xl sm:rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950 snap-start"
+              className="group shrink-0 w-[84vw] sm:w-[75vw] lg:w-[860px] aspect-[3/4] sm:aspect-[16/10] lg:aspect-[16/9.5] rounded-2xl sm:rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950 snap-start"
               style={{
-                borderColor: isActive ? "rgba(255, 255, 255, 0.22)" : "var(--cf-border)",
+                borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
               }}
             >
-              {/* Top-Left: Pure Client Brand Lockup (Relative on mobile, absolute on desktop) */}
-              <div className="px-5 pt-5 pb-3 sm:px-8 sm:pt-8 md:absolute md:top-8 md:left-8 md:p-0 z-20 flex items-center justify-between">
-                <span className="cf-mono text-[11px] sm:text-xs lg:text-[13px] font-bold tracking-[0.22em] text-cyan-400 md:text-white/90 uppercase drop-shadow-md">
-                  {project.client}
-                </span>
-                <span className="cf-mono text-[10px] text-zinc-500 md:hidden">
-                  {project.n} / {PROJECTS.length}
-                </span>
-              </div>
-
-              {/* Media image container: responsive height on mobile with high visibility */}
-              <div className="w-full h-48 sm:h-64 md:h-full p-4 sm:p-6 md:p-8 flex items-center justify-center md:justify-start overflow-hidden relative bg-zinc-950/80">
+              {/* Full-Bleed Media Background (1:1 with TryProfound case study card) */}
+              <div className="absolute inset-0 w-full h-full bg-zinc-950 overflow-hidden">
                 <img
                   src={project.img}
                   alt={project.client}
-                  className="max-w-full max-h-full object-contain object-center md:object-left rounded-lg sm:rounded-xl transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                  className="w-full h-full object-cover object-top sm:object-left-top transition-transform duration-700 ease-out group-hover:scale-[1.02] filter brightness-[0.75] contrast-[1.05]"
                   loading="lazy"
                 />
               </div>
 
-              {/* Cinematic Gradient Scrim (Desktop full overlay, mobile subtle bottom transition) */}
-              <div className="pointer-events-none hidden md:block absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/30" />
+              {/* TryProfound Cinematic Gradient Scrim: Deep dark overlay on bottom and top for 100% legibility */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/35" />
 
-              {/* Impact Hook: Natural vertical stack on mobile with solid readability scrim, pinned bottom-left on desktop */}
-              <div className="p-5 sm:p-6 md:p-0 md:absolute md:bottom-8 md:left-8 md:right-8 max-w-xl text-left bg-gradient-to-t from-zinc-950 via-zinc-950/95 to-transparent md:bg-none z-20 border-t border-zinc-900 md:border-0">
-                <h3 className="text-base sm:text-xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-md">
+              {/* Top-Left: Pure Client Brand Lockup (1:1 with Plaid logo placement in Profound) */}
+              <div className="absolute top-6 left-6 sm:top-8 sm:left-8 z-20">
+                <span className="cf-mono text-xs sm:text-[13px] font-bold tracking-[0.22em] text-white/95 uppercase drop-shadow-md">
+                  {project.client}
+                </span>
+              </div>
+
+              {/* Bottom-Left: 1:1 TryProfound Impact Hook with Attribution & "View story" pill */}
+              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 max-w-xl text-left z-20">
+                <h3 className="text-xl sm:text-2xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-lg">
                   <span className="font-bold text-white tracking-tight mr-2 underline decoration-cyan-400/80 decoration-2 underline-offset-4">
                     {project.metric}
                   </span>
                   {project.impactHook}
                 </h3>
+
+                <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-zinc-400 font-medium">
+                  {project.attribution}
+                </p>
+
+                <div className="mt-4 sm:mt-5">
+                  <a
+                    href={project.href}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 border bg-white/10 hover:bg-white/20 border-white/15 text-white backdrop-blur-md shadow-md active:scale-95"
+                  >
+                    View story <ArrowUpRight className="w-3.5 h-3.5 text-cyan-400" />
+                  </a>
+                </div>
               </div>
             </article>
           );
