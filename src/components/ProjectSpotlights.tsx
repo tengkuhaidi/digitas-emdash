@@ -115,53 +115,51 @@ export function ProjectSpotlights() {
       className="relative py-14 sm:py-20 lg:py-28 overflow-x-clip"
       style={{ background: "var(--cf-bg)" }}
     >
-      {/* Container aligned Header - 1:1 TryProfound */}
+      {/* Container aligned Header - 1:1 TryProfound Layout */}
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 sm:pb-8 border-b" style={{ borderColor: "var(--cf-border)" }}>
-          <div className="max-w-2xl">
-            <h2
-              className="cf-display text-2xl sm:text-4xl lg:text-[44px] font-semibold tracking-tight leading-[1.15]"
-              style={{ color: "var(--cf-fg)" }}
-            >
-              Engineered for systems with higher standards.
-            </h2>
-            <p
-              className="mt-3 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl text-balance"
-              style={{ color: "var(--cf-muted)" }}
-            >
-              Mission-critical digital products, internal platforms, and automated workflow engines built for masters of their craft.
-            </p>
-          </div>
+        <div className="pb-3 sm:pb-4">
+          <h2
+            className="cf-display text-2xl sm:text-4xl lg:text-[44px] font-semibold tracking-tight leading-[1.15]"
+            style={{ color: "var(--cf-fg)" }}
+          >
+            Engineered for systems with higher standards.
+          </h2>
+          <p
+            className="mt-3 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl text-balance"
+            style={{ color: "var(--cf-muted)" }}
+          >
+            Mission-critical digital products, internal platforms, and automated workflow engines built for masters of their craft.
+          </p>
+        </div>
 
-          {/* TryProfound-style Arrow Controls: Aligned right */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0 self-end md:self-end">
+        {/* 1:1 TryProfound Navigation Controls: Dedicated row below subhead, right-aligned (size-8, rounded-[4px], subtle border & background) */}
+        <div className="flex justify-end pt-2 pb-3">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={handlePrev}
               disabled={!canGoPrev}
-              aria-label="Previous story"
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-sm"
+              aria-label="Previous customer story"
+              className="w-8 h-8 rounded-[4px] flex items-center justify-center transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed"
               style={{
-                background: canGoPrev ? "var(--cf-card)" : "transparent",
-                borderColor: "var(--cf-border)",
-                color: canGoPrev ? "var(--cf-fg)" : "var(--cf-dim)",
+                backgroundColor: "transparent",
+                color: canGoPrev ? "rgb(237, 242, 245)" : "rgb(80, 80, 80)",
               }}
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m15 18-6-6 6-6" />
               </svg>
             </button>
             <button
               onClick={handleNext}
               disabled={!canGoNext}
-              aria-label="Next story"
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-sm"
+              aria-label="Next customer story"
+              className="w-8 h-8 rounded-[4px] flex items-center justify-center transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed"
               style={{
-                background: canGoNext ? "var(--cf-raised)" : "transparent",
-                borderColor: "var(--cf-border)",
-                color: canGoNext ? "var(--cf-fg)" : "var(--cf-dim)",
+                backgroundColor: canGoNext ? "rgb(51, 51, 51)" : "transparent",
+                color: canGoNext ? "rgb(237, 242, 245)" : "rgb(80, 80, 80)",
               }}
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m9 18 6-6-6-6" />
               </svg>
             </button>
@@ -172,7 +170,7 @@ export function ProjectSpotlights() {
       {/* Offside Bleed Carousel Track - 1:1 TryProfound Card Proportions (aspect-[4/5] on mobile) */}
       <div
         ref={trackRef}
-        className="mt-6 sm:mt-8 flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none pt-2 pb-6 snap-x snap-mandatory"
+        className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none pt-1 pb-6 snap-x snap-mandatory"
         style={{
           paddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.5rem))",
           paddingRight: "max(1.25rem, 8vw)",
