@@ -1,260 +1,345 @@
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-const PROJECTS = [
+interface ProjectFeature {
+  label: string;
+  desc: string;
+  metric: string;
+}
+
+interface Project {
+  n: string;
+  id: string;
+  label: string;
+  tagline: string;
+  accent: string;
+  accentGlow: string;
+  img: string;
+  url: string;
+  latencyBadge: string;
+  summary: string;
+  deepDive: string;
+  features: ProjectFeature[];
+  tags: string[];
+  client?: string;
+  stack?: string[];
+  caseStudyUrl?: string;
+  liveUrl?: string;
+}
+
+const PROJECTS: Project[] = [
   {
     n: "01",
-    label: "LEGALIZIN",
+    id: "legalizin",
+    label: "LEGALIZIN.COM",
+    tagline: "Autonomous RegTech & Corporate Incorporation Engine",
+    accent: "#06b6d4",
+    accentGlow: "rgba(6, 182, 212, 0.16)",
     img: "/images/case-study/legalizin-preview.png",
-    title: "Legalizin",
-    lead: "Indonesia's premier automated RegTech engine and business licensing operating system.",
-    story: [
-      "Legalizin turns bureaucratic company establishment into a structured digital journey. Instead of navigating disconnected government portals, founders verify corporate entity availability, classify regulatory risk under KBLI 2025, and track statutory filings in one continuous workflow.",
-      "We engineered the product from discovery to filing execution on an Edge runtime architecture, delivering sub-20ms response times nationwide. The platform integrates an instant KBLI classification lookup, automated drafting pipelines for Ministry of Law and Human Rights (AHU) submissions, and a self-managing AI indexing engine that captures high-intent organic legal queries across all 38 provinces.",
+    url: "https://legalizin.com",
+    latencyBadge: "18ms Edge Latency",
+    summary:
+      "Indonesia's automated business licensing operating system. Replaces disconnected bureaucratic queues with a continuous digital journey from instant corporate name verification to statutory compliance.",
+    deepDive:
+      "Built on Cloudflare Edge runtime with sub-20ms response times across 38 provinces. Features an instant KBLI 2025 classifier, automatic AHU Kemenkumham filing generation, and a self-managing AI SEO pipeline driving thousands of organic corporate leads without ad burn.",
+    features: [
+      { label: "Edge Speed", desc: "Edge SSR rendering under 20ms nationwide", metric: "< 20ms" },
+      { label: "KBLI 2025 AI", desc: "Instant classification matching OSS RBA", metric: "1,559 Codes" },
+      { label: "AI WhatsApp CS", desc: "24/7 automated consultation & dispatch", metric: "Instant" },
+      { label: "Filing Pipeline", desc: "Direct format sync with AHU & OSS", metric: "100% Digital" },
     ],
-    tags: ["LegalTech", "RegTech", "Product UI/UX", "Web Platform", "Edge Architecture"],
-    links: [
-      { href: "/case-study/legalizin", text: "Read Technical Case Study", icon: "arrow" },
-      { href: "https://legalizin.com/", text: "Visit Live Platform", icon: "out", external: true },
-    ],
+    tags: ["RegTech", "Product UI/UX", "Edge Architecture", "AI Automation", "High-Volume B2B"],
+    caseStudyUrl: "/case-study/legalizin",
+    liveUrl: "https://legalizin.com",
   },
   {
     n: "02",
-    label: "VISITOR MANAGEMENT SYSTEM",
+    id: "vms",
+    label: "VMS ENTERPRISE",
+    tagline: "High-Throughput PropTech & Computer Vision Access Control",
+    accent: "#10b981",
+    accentGlow: "rgba(16, 185, 129, 0.16)",
     img: "/images/case-study/vms-enterprise.png",
-    title: "Visitor Management System (VMS)",
-    lead: "Enterprise PropTech & Computer Vision Platform.",
-    story: [
-      "A multi-tenant building security platform engineered for high-throughput commercial towers to replace manual paper guestbooks and physical log jams.",
-      "The system pairs front-desk operations with a containerized computer vision microservice using PaddleOCR and OpenCV. Visitors complete real-time national ID (KTP) recognition at reception kiosks, where the engine detects card boundaries, parses the 16-digit identity number, and auto-populates visitor passes in seconds. Building security teams manage live headcount tracking, authorized tenant hosts, and multi-floor turnstile access across multi-tower complexes from an active operational monitoring console.",
+    url: "https://vms.digitas.id",
+    latencyBadge: "Realtime Computer Vision",
+    summary:
+      "Enterprise building reception and physical security platform engineered for high-density commercial towers to eliminate manual lobby queues and paper visitor log books.",
+    deepDive:
+      "Pairs front-desk kiosks with a containerized PaddleOCR and OpenCV microservice for instant 16-digit national ID (KTP) recognition. Features multi-tower role-based access, automated host approval notifications, and dynamic floor turnstile integration.",
+    features: [
+      { label: "Identity OCR", desc: "Sub-second KTP parsing via PaddleOCR", metric: "99.4% Acc." },
+      { label: "Multi-Tower", desc: "Unified reception for multi-tenant towers", metric: "Unlimited" },
+      { label: "QR Pass Gate", desc: "Dynamic time-bound turnstile barcoding", metric: "Zero Touch" },
+      { label: "Live Headcount", desc: "Real-time security audit & emergency log", metric: "Realtime" },
     ],
-    tags: ["Enterprise", "PropTech", "Computer Vision", "Product UI/UX", "Web App"],
-    stack: "Next.js · TypeScript · Python · PaddleOCR · OpenCV · Docker",
+    tags: ["PropTech", "Computer Vision", "PaddleOCR", "Docker", "Enterprise Security"],
+    client: "Commercial Towers & Developers",
+    stack: ["Next.js", "TypeScript", "Python", "PaddleOCR", "OpenCV", "MariaDB", "Docker"],
   },
   {
     n: "03",
-    label: "CORPORATE DOCUMENT TRACKING",
+    id: "doc-tracking",
+    label: "CORP DOC TRACKING",
+    tagline: "Cryptographic Corporate Document Workflow & Milestone Audit Trail",
+    accent: "#3b82f6",
+    accentGlow: "rgba(59, 130, 246, 0.16)",
     img: "/images/case-study/metropolitan-kentjana-doc-tracking.png",
-    title: "Corporate Document Tracking Platform",
-    lead: "Internal document workflow management, approval routing, and archival audit trail.",
-    story: [
-      "Designed and deployed for PT Metropolitan Kentjana Tbk to govern the end-to-end lifecycle of sensitive physical and digital corporate files across enterprise departments.",
-      "We built an operational routing engine where every document handoff requires authenticated milestone approvals, digital signatures, and dynamic QR verification stamps. Granular role-based access control, cryptographic verification, and tamper-evident audit logs eliminate inter-departmental bottlenecks, giving legal, procurement, and executive teams complete visibility into corporate compliance history.",
+    url: "https://tracking.mkentjana.co.id",
+    latencyBadge: "Tamper-Evident Ledger",
+    summary:
+      "Mission-critical physical and digital document tracking system built for public developer PT Metropolitan Kentjana Tbk (Pondok Indah Group).",
+    deepDive:
+      "Transforms inter-departmental document handoffs into an authenticated workflow engine. Features cryptographic digital signature stamping, dynamic QR verification seals, and granular department routing with zero-tamper audit logs.",
+    features: [
+      { label: "Handoff Routing", desc: "Enforced milestone handoffs with SLA timers", metric: "Zero Delay" },
+      { label: "Dynamic QR Seal", desc: "Tamper-evident verification on physical paper", metric: "Verified" },
+      { label: "Digital Signature", desc: "Multi-tier department executive sign-off", metric: "Secured" },
+      { label: "Audit Ledger", desc: "Immutable history for statutory audit reviews", metric: "100% Trace" },
     ],
-    tags: ["Enterprise", "B2B", "Workflow Automation", "Product UI/UX", "Web App"],
+    tags: ["Enterprise ERP", "Workflow Automation", "Audit Trail", "Public Company Scale"],
     client: "PT Metropolitan Kentjana Tbk",
   },
-] as const;
-
-type Project = (typeof PROJECTS)[number];
-type Mode = "spotlight" | "awwwards";
-
-const pill = "cf-mono rounded-full border px-3 py-1 text-[11px]";
-const pillStyle = { borderColor: "var(--cf-border)", color: "var(--cf-muted)" } as const;
-const GRAIN = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
-
-const CSS = `
-.sp-in{animation:sp-in .5s cubic-bezier(.2,.7,.2,1) both}
-@keyframes sp-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.sp-card{position:relative;overflow:hidden;border-radius:1.5rem;border:1px solid var(--cf-border);background:var(--cf-card);isolation:isolate}
-.sp-card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(34,211,238,.15),transparent 60%)}
-.sp-card::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .3s;border-radius:inherit;padding:1px;background:radial-gradient(260px circle at var(--x,50%) var(--y,50%),rgba(34,211,238,.7),transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.sp-card:hover::before,.sp-card:hover::after{opacity:1}
-.sp-mock{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;box-shadow:0 2px 4px rgba(0,0,0,.18),0 12px 24px -8px rgba(0,0,0,.28),0 40px 80px -24px rgba(0,0,0,.4),0 0 0 1px var(--cf-border)}
-.sp-card:hover .sp-mock{transform:translateY(-4px)}
-.sp-dot{animation:sp-pulse 1.8s ease-out infinite}
-@keyframes sp-pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}100%{box-shadow:0 0 0 8px rgba(34,197,94,0)}}
-.aw-pill{position:absolute;left:0;top:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .2s;will-change:transform}
-.aw-img:hover .aw-pill{opacity:1}
-.aw-img{cursor:none}
-@media (hover:none),(pointer:coarse){.aw-pill{display:none}.aw-img{cursor:auto}}
-@media (prefers-reduced-motion:reduce){.sp-in,.sp-dot{animation:none}.sp-mock{transition:none}.sp-card:hover .sp-mock{transform:none}.aw-pill{display:none}.aw-img{cursor:auto}}
-`;
-
-function Body({ p, compact }: { p: Project; compact?: boolean }) {
-  const story = compact ? p.story.slice(0, 1) : p.story;
-  return (
-    <>
-      <p className="mt-3 text-[15px] font-medium leading-snug" style={{ color: "var(--cf-fg)" }}>{p.lead}</p>
-      {story.map((s) => (
-        <p key={s.slice(0, 20)} className="mt-4 text-[14.5px] leading-relaxed" style={{ color: "var(--cf-muted)" }}>{s}</p>
-      ))}
-      {"client" in p && (
-        <p className="cf-mono mt-5 text-[11px] uppercase tracking-widest" style={{ color: "var(--cf-dim)" }}>
-          Client · <span style={{ color: "var(--cf-fg)" }}>{p.client}</span>
-        </p>
-      )}
-      {"stack" in p && (
-        <p className="cf-mono mt-5 text-[11px]" style={{ color: "var(--cf-dim)" }}>
-          <span className="uppercase tracking-widest">Tech Stack</span>
-          <span className="mt-1.5 block rounded-lg border px-3 py-2" style={{ borderColor: "var(--cf-border)", background: "var(--cf-raised)", color: "var(--cf-fg)" }}>{p.stack}</span>
-        </p>
-      )}
-      <ul className="mt-5 flex flex-wrap gap-2">
-        {p.tags.map((t) => (
-          <li key={t} className={pill} style={pillStyle}>{t}</li>
-        ))}
-      </ul>
-      {"links" in p && (
-        <div className="mt-6 flex flex-wrap gap-3">
-          {p.links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              {...("external" in l ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="inline-flex h-10 items-center gap-2 rounded-full border px-5 text-[13.5px] font-semibold transition-opacity hover:opacity-80"
-              style={{ borderColor: "var(--cf-border)", background: l.icon === "arrow" ? "var(--cf-fg)" : "var(--cf-card)", color: l.icon === "arrow" ? "var(--cf-bg)" : "var(--cf-fg)" }}
-            >
-              {l.text} {l.icon === "arrow" ? <ArrowRight size={15} aria-hidden="true" /> : <ArrowUpRight size={15} aria-hidden="true" />}
-            </a>
-          ))}
-        </div>
-      )}
-    </>
-  );
-}
-
-function SpotlightCard({ p, i }: { p: Project; i: number }) {
-  const move = (e: MouseEvent<HTMLElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty("--x", `${e.clientX - r.left}px`);
-    e.currentTarget.style.setProperty("--y", `${e.clientY - r.top}px`);
-  };
-  const flip = i % 2 === 1;
-  return (
-    <article className="sp-card grid lg:grid-cols-12" onMouseMove={move}>
-      <span aria-hidden="true" className="cf-display pointer-events-none absolute -top-4 right-4 z-0 select-none leading-none sm:right-8" style={{ fontSize: "clamp(120px, 22vw, 260px)", fontWeight: 800, letterSpacing: "-0.06em", color: "transparent", WebkitTextStroke: "1.5px var(--cf-fg)", opacity: 0.07 }}>{p.n}</span>
-      <div className={`relative z-[1] flex min-w-0 flex-col justify-center p-6 sm:p-10 lg:col-span-5 ${flip ? "lg:order-2" : ""}`}>
-        <span className="cf-mono inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-[10.5px] uppercase tracking-widest" style={{ borderColor: "var(--cf-border)", color: "var(--cf-fg)" }}>
-          <span className="sp-dot h-1.5 w-1.5 rounded-full" style={{ background: "#22c55e" }} />
-          {i === 0 ? "Live in production" : "Online at scale"}
-        </span>
-        <p className="cf-mono mb-3 mt-5 text-[11px] uppercase tracking-widest" style={{ color: "var(--cf-accent)" }}>{p.n} — {p.label}</p>
-        <h3 className="cf-display text-balance" style={{ fontWeight: 700, fontSize: "clamp(1.5rem, 2.6vw, 2.125rem)", letterSpacing: "-0.035em", lineHeight: 1.1, color: "var(--cf-fg)" }}>{p.title}</h3>
-        <Body p={p} compact />
-      </div>
-      <div className={`relative z-[1] flex min-w-0 items-center p-5 sm:p-10 lg:col-span-7 ${flip ? "lg:order-1" : ""}`}>
-        <div className="sp-mock w-full overflow-hidden rounded-xl" style={{ background: "var(--cf-raised)" }}>
-          <div className="flex items-center gap-1.5 border-b px-4 py-3" style={{ borderColor: "var(--cf-border)" }} aria-hidden="true">
-            {[0, 1, 2].map((k) => <span key={k} className="h-2.5 w-2.5 rounded-full" style={{ background: "var(--cf-dim)", opacity: 0.5 }} />)}
-          </div>
-          <img src={p.img} alt={`${p.title} interface`} loading="lazy" decoding="async" className="block h-auto w-full" />
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function AwwwardsCard({ p, i }: { p: Project; i: number }) {
-  const tilt = useRef<HTMLDivElement>(null);
-  const pillEl = useRef<HTMLSpanElement>(null);
-  const pos = useRef({ x: 0, y: 0, tx: 0, ty: 0, raf: 0 });
-  const href = "links" in p ? p.links[0].href : undefined;
-
-  useEffect(() => () => cancelAnimationFrame(pos.current.raf), []);
-
-  const loop = () => {
-    const s = pos.current;
-    s.x += (s.tx - s.x) * 0.18;
-    s.y += (s.ty - s.y) * 0.18;
-    if (pillEl.current) pillEl.current.style.transform = `translate3d(${s.x}px,${s.y}px,0) translate(-50%,-50%)`;
-    s.raf = Math.abs(s.tx - s.x) + Math.abs(s.ty - s.y) > 0.1 ? requestAnimationFrame(loop) : 0;
-  };
-  const move = (e: MouseEvent<HTMLElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    if (tilt.current) tilt.current.style.transform = `rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 10).toFixed(2)}deg) scale(1.01)`;
-    const s = pos.current;
-    s.tx = e.clientX - r.left;
-    s.ty = e.clientY - r.top;
-    if (!s.raf) s.raf = requestAnimationFrame(loop);
-  };
-  const enter = (e: MouseEvent<HTMLElement>) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    const s = pos.current;
-    s.x = s.tx = e.clientX - r.left;
-    s.y = s.ty = e.clientY - r.top;
-  };
-  const leave = () => {
-    if (tilt.current) tilt.current.style.transform = "";
-  };
-
-  const Wrap: any = href ? "a" : "div";
-  return (
-    <article className="overflow-hidden rounded-3xl border" style={{ borderColor: "var(--cf-border)", background: "var(--cf-card)" }}>
-      <div style={{ perspective: "1000px" }}>
-        <Wrap
-          {...(href ? { href, "aria-label": `Explore case: ${p.title}` } : {})}
-          className="aw-img relative block aspect-[4/5] w-full overflow-hidden sm:aspect-[16/10]"
-          onMouseMove={move}
-          onMouseEnter={enter}
-          onMouseLeave={leave}
-        >
-          <div ref={tilt} className="absolute inset-0 transition-transform duration-200 ease-out" style={{ transformStyle: "preserve-3d", willChange: "transform" }}>
-            <img src={p.img} alt={`${p.title} interface`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-top" />
-            <div aria-hidden="true" className="absolute inset-0" style={{ background: "linear-gradient(to top, var(--cf-card) 6%, color-mix(in srgb, var(--cf-card) 55%, transparent) 40%, transparent 75%), radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--cf-bg) 70%, transparent) 100%)" }} />
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 mix-blend-overlay" style={{ backgroundImage: GRAIN, opacity: 0.18 }} />
-            <span aria-hidden="true" className="absolute left-0 top-0 h-full w-1" style={{ background: "linear-gradient(to bottom, var(--cf-accent), transparent)", boxShadow: "0 0 24px 2px var(--cf-accent)" }} />
-            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-10" style={{ transform: "translateZ(40px)" }}>
-              <p className="cf-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "var(--cf-accent)" }}>{p.n} / 03 — {i === 0 ? "Live in production" : "Online at scale"}</p>
-              <h3 className="cf-display mt-3 break-words uppercase" style={{ fontWeight: 800, fontSize: "clamp(1.9rem, 6.2vw, 4.75rem)", letterSpacing: "-0.06em", lineHeight: 0.92, color: "var(--cf-fg)" }}>{p.label}</h3>
-            </div>
-          </div>
-          <span ref={pillEl} aria-hidden="true" className="aw-pill cf-mono whitespace-nowrap rounded-full px-4 py-2.5 text-[11px] font-semibold uppercase tracking-widest" style={{ background: "var(--cf-inv-bg)", color: "var(--cf-inv-fg)", boxShadow: "0 8px 30px rgba(0,0,0,.35)" }}>
-            Explore case ↗
-          </span>
-        </Wrap>
-      </div>
-      <div className="min-w-0 border-t p-5 sm:p-10" style={{ borderColor: "var(--cf-border)" }}>
-        <h4 className="cf-display text-balance" style={{ fontWeight: 700, fontSize: "clamp(1.25rem, 2vw, 1.5rem)", letterSpacing: "-0.035em", lineHeight: 1.15, color: "var(--cf-fg)" }}>{p.title}</h4>
-        <div className="max-w-3xl"><Body p={p} compact /></div>
-      </div>
-    </article>
-  );
-}
-
-const MODES: { id: Mode; label: string }[] = [
-  { id: "spotlight", label: "✦ Linear Spotlight" },
-  { id: "awwwards", label: "⚡ Awwwards Magnetic" },
 ];
 
 export function ProjectSpotlights() {
-  const [mode, setMode] = useState<Mode>("spotlight");
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeFeatureIdx, setActiveFeatureIdx] = useState(0);
+  const p = PROJECTS[activeIdx];
+
+  const handleSelectProject = (idx: number) => {
+    setActiveIdx(idx);
+    setActiveFeatureIdx(0);
+  };
+
   return (
-    <section id="featured" className="overflow-x-clip px-5 py-20 sm:py-28" style={{ background: "var(--cf-bg)" }}>
-      <style>{CSS}</style>
-      <div className="mx-auto max-w-6xl">
-        <header className="mb-12 flex flex-col gap-8 sm:mb-16 lg:flex-row lg:items-end lg:justify-between">
-          <div className="min-w-0">
-            <p className="cf-mono mb-4 text-xs uppercase tracking-widest" style={{ color: "var(--cf-accent)" }}>Selected Work</p>
-            <h2 className="cf-display text-balance" style={{ fontWeight: 700, fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "-0.045em", lineHeight: 1, color: "var(--cf-fg)" }}>Project Spotlights</h2>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: "var(--cf-muted)" }}>
+    <section id="featured" className="relative px-5 py-24 sm:py-32 overflow-hidden" style={{ background: "var(--cf-bg)" }}>
+      {/* Background ambient lighting keyed to active project */}
+      <div
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[140px] opacity-40 transition-colors duration-700"
+        style={{ background: p.accentGlow }}
+      />
+
+      <div className="relative mx-auto max-w-6xl">
+        {/* Header with Title and Modern Architectural Tabs */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b" style={{ borderColor: "var(--cf-border)" }}>
+          <div>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full animate-ping" style={{ background: p.accent }} />
+              <p className="cf-mono text-[11px] uppercase tracking-[0.24em]" style={{ color: p.accent }}>
+                SELECTED WORK // STAGE ARCHITECTURE
+              </p>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight" style={{ color: "var(--cf-fg)" }}>
+              Project Spotlights
+            </h2>
+            <p className="mt-2 text-sm sm:text-base max-w-xl leading-relaxed" style={{ color: "var(--cf-muted)" }}>
               A closer look at some of the digital products we've designed and built, from customer-facing platforms to complex enterprise systems.
             </p>
           </div>
-          <div role="radiogroup" aria-label="Card style" className="flex w-full shrink-0 rounded-full border p-1 sm:w-auto" style={{ borderColor: "var(--cf-border)", background: "var(--cf-card)" }}>
-            {MODES.map((m) => {
-              const on = mode === m.id;
+
+          {/* Architectural Stage Switcher Tabs */}
+          <div className="inline-flex p-1.5 rounded-2xl border backdrop-blur-md self-start md:self-auto" style={{ background: "var(--cf-card)", borderColor: "var(--cf-border)" }}>
+            {PROJECTS.map((item, idx) => {
+              const isActive = idx === activeIdx;
               return (
                 <button
-                  key={m.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={on}
-                  onClick={() => setMode(m.id)}
-                  className="cf-mono flex-1 whitespace-nowrap rounded-full px-3 py-2 text-[11.5px] font-semibold transition-colors duration-300 sm:flex-none sm:px-4 sm:text-xs"
-                  style={{ background: on ? "var(--cf-fg)" : "transparent", color: on ? "var(--cf-bg)" : "var(--cf-muted)" }}
+                  key={item.id}
+                  onClick={() => handleSelectProject(idx)}
+                  className="relative px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-[13px] font-medium transition-all duration-300 flex items-center gap-2"
+                  style={{
+                    background: isActive ? "var(--cf-raised)" : "transparent",
+                    color: isActive ? "var(--cf-fg)" : "var(--cf-muted)",
+                    boxShadow: isActive ? "0 2px 8px rgba(0,0,0,0.12)" : "none",
+                  }}
                 >
-                  {m.label}
+                  <span
+                    className="cf-mono text-[10px] font-bold tracking-wider"
+                    style={{ color: isActive ? item.accent : "var(--cf-dim)" }}
+                  >
+                    {item.n}
+                  </span>
+                  <span>{item.label.split(".")[0]}</span>
+                  {isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: item.accent }} />
+                  )}
                 </button>
               );
             })}
           </div>
-        </header>
+        </div>
 
-        <div key={mode} className="sp-in flex flex-col gap-8 sm:gap-12">
-          {PROJECTS.map((p, i) => (mode === "spotlight" ? <SpotlightCard key={p.n} p={p} i={i} /> : <AwwwardsCard key={p.n} p={p} i={i} />))}
+        {/* The Godly Stage Main Showcase */}
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Interactive Screen Bezel & Media Preview */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            {/* The Integrated Device Stage Frame */}
+            <div
+              className="group relative rounded-3xl border p-2 sm:p-3 overflow-hidden transition-all duration-500 shadow-2xl"
+              style={{
+                background: "var(--cf-card)",
+                borderColor: "var(--cf-border)",
+                boxShadow: `0 24px 60px -15px ${p.accentGlow}`,
+              }}
+            >
+              {/* Glass Chrome Titlebar */}
+              <div className="flex items-center justify-between px-3 py-2.5 rounded-2xl mb-2 border" style={{ background: "var(--cf-bg)", borderColor: "var(--cf-border)" }}>
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                  <span className="cf-mono text-[11px] ml-2 px-2 py-0.5 rounded-md border" style={{ borderColor: "var(--cf-border)", color: "var(--cf-muted)" }}>
+                    {p.url}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.accent }} />
+                  <span className="cf-mono text-[10px] uppercase tracking-wider" style={{ color: p.accent }}>
+                    {p.latencyBadge}
+                  </span>
+                </div>
+              </div>
+
+              {/* Stage Viewport with Image & Vignette Blending */}
+              <div className="relative rounded-2xl overflow-hidden border bg-zinc-950 aspect-[16/10]" style={{ borderColor: "var(--cf-border)" }}>
+                <img
+                  src={p.img}
+                  alt={p.label}
+                  className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+
+                {/* Soft Vignette Overlay to blend seamlessly into dark card */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+                {/* Floating Bottom Telemetry Stamp */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                  <span className="cf-mono text-[11px] text-white/90 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                    {p.tagline}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Feature Telemetry Matrix (Inside the Stage) */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              {p.features.map((feat, idx) => {
+                const isSelected = activeFeatureIdx === idx;
+                return (
+                  <button
+                    key={feat.label}
+                    onClick={() => setActiveFeatureIdx(idx)}
+                    className="p-3 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between"
+                    style={{
+                      background: isSelected ? "var(--cf-raised)" : "var(--cf-card)",
+                      borderColor: isSelected ? p.accent : "var(--cf-border)",
+                    }}
+                  >
+                    <span className="cf-mono text-[10px] uppercase tracking-wider" style={{ color: "var(--cf-muted)" }}>
+                      {feat.label}
+                    </span>
+                    <span className="text-base font-semibold mt-1" style={{ color: isSelected ? p.accent : "var(--cf-fg)" }}>
+                      {feat.metric}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Column: Editorial Case Study Brief & Value Proposition */}
+          <div className="lg:col-span-5 flex flex-col justify-between h-full p-2 sm:p-4">
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="cf-mono text-xs px-2.5 py-0.5 rounded-full border font-bold" style={{ borderColor: p.accent, color: p.accent }}>
+                  PROJECT {p.n}
+                </span>
+                {p.client && (
+                  <span className="cf-mono text-xs" style={{ color: "var(--cf-muted)" }}>
+                    CLIENT · <strong style={{ color: "var(--cf-fg)" }}>{p.client}</strong>
+                  </span>
+                )}
+              </div>
+
+              <h3 className="mt-4 text-2xl sm:text-4xl font-semibold tracking-tight" style={{ color: "var(--cf-fg)" }}>
+                {p.label}
+              </h3>
+              <p className="mt-2 text-sm sm:text-base font-medium leading-snug" style={{ color: p.accent }}>
+                {p.tagline}
+              </p>
+
+              <p className="mt-5 text-sm sm:text-[15px] leading-relaxed" style={{ color: "var(--cf-fg)" }}>
+                {p.summary}
+              </p>
+
+              <p className="mt-4 text-xs sm:text-sm leading-relaxed" style={{ color: "var(--cf-muted)" }}>
+                {p.deepDive}
+              </p>
+
+              {/* Active Feature Deep Dive Spotlight */}
+              <div className="mt-6 p-4 rounded-2xl border" style={{ background: "var(--cf-card)", borderColor: "var(--cf-border)" }}>
+                <div className="flex items-center justify-between">
+                  <span className="cf-mono text-xs uppercase tracking-wider font-semibold" style={{ color: p.accent }}>
+                    FEATURE DETAIL // {p.features[activeFeatureIdx].label}
+                  </span>
+                  <span className="cf-mono text-xs font-bold px-2 py-0.5 rounded" style={{ background: "var(--cf-raised)", color: p.accent }}>
+                    {p.features[activeFeatureIdx].metric}
+                  </span>
+                </div>
+                <p className="mt-2 text-xs sm:text-sm" style={{ color: "var(--cf-muted)" }}>
+                  {p.features[activeFeatureIdx].desc}
+                </p>
+              </div>
+
+              {/* Tech Stack Chips if present */}
+              {p.stack && (
+                <div className="mt-5">
+                  <p className="cf-mono text-[11px] uppercase tracking-wider mb-2" style={{ color: "var(--cf-dim)" }}>
+                    VERIFIED STACK ARCHITECTURE
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.stack.map((st) => (
+                      <span key={st} className="cf-mono text-[11px] px-2.5 py-1 rounded-md border" style={{ background: "var(--cf-raised)", borderColor: "var(--cf-border)", color: "var(--cf-fg)" }}>
+                        {st}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Categorical Tags */}
+              <div className="mt-6 flex flex-wrap gap-2">
+                {p.tags.map((t) => (
+                  <span key={t} className="cf-mono text-[11px] px-3 py-1 rounded-full border" style={{ borderColor: "var(--cf-border)", color: "var(--cf-muted)" }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Action CTAs */}
+            <div className="mt-8 pt-6 border-t flex flex-wrap gap-3" style={{ borderColor: "var(--cf-border)" }}>
+              {p.caseStudyUrl && (
+                <a
+                  href={p.caseStudyUrl}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 hover:opacity-90 shadow-md"
+                  style={{ background: "var(--cf-fg)", color: "var(--cf-bg)" }}
+                >
+                  Read Technical Case Study <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              )}
+              {p.liveUrl && (
+                <a
+                  href={p.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium border transition-all duration-300 hover:bg-white/5"
+                  style={{ borderColor: "var(--cf-border)", color: "var(--cf-fg)" }}
+                >
+                  Visit Live Platform <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </section>
