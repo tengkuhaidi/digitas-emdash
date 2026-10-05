@@ -48,7 +48,6 @@ export function ProjectSpotlights() {
     if (!trackRef.current) return;
     const cards = trackRef.current.querySelectorAll<HTMLElement>("[data-spotlight-card]");
     if (cards[index] && cards[0]) {
-      // Calculate exact delta from card 0 to guarantee every card aligns precisely with the headline gutter
       const targetLeft = cards[index].offsetLeft - cards[0].offsetLeft;
       trackRef.current.scrollTo({
         left: targetLeft,
@@ -102,41 +101,41 @@ export function ProjectSpotlights() {
   return (
     <section
       id="featured"
-      className="relative py-24 sm:py-32 overflow-x-clip"
+      className="relative py-16 sm:py-24 lg:py-32 overflow-x-clip"
       style={{ background: "var(--cf-bg)" }}
     >
-      {/* Container aligned Header - Standard max-w-6xl with 24px/1.5rem padding */}
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b" style={{ borderColor: "var(--cf-border)" }}>
-          <div className="max-w-2xl">
+      {/* Container aligned Header */}
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
+        <div className="flex items-start md:items-end justify-between gap-4 sm:gap-6 pb-6 sm:pb-10 border-b" style={{ borderColor: "var(--cf-border)" }}>
+          <div className="max-w-2xl pr-2">
             <h2
-              className="cf-display text-3xl sm:text-5xl lg:text-[46px] font-semibold tracking-tight leading-[1.08]"
+              className="cf-display text-2xl sm:text-4xl lg:text-[46px] font-semibold tracking-tight leading-[1.12]"
               style={{ color: "var(--cf-fg)" }}
             >
               Engineered for systems with higher standards.
             </h2>
             <p
-              className="mt-4 text-base sm:text-lg leading-relaxed max-w-xl"
+              className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl text-balance"
               style={{ color: "var(--cf-muted)" }}
             >
               Mission-critical digital products, internal platforms, and automated workflow engines built for masters of their craft.
             </p>
           </div>
 
-          {/* Prominent TryProfound-Sized Arrow Controls with Large Bold Vectors */}
-          <div className="flex items-center gap-3 shrink-0 self-start md:self-end">
+          {/* Arrow Controls: 44px on mobile (min touch target), 56px on desktop */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 self-start md:self-end pt-1 md:pt-0">
             <button
               onClick={handlePrev}
               disabled={!canGoPrev}
               aria-label="Previous story"
-              className="w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
+              className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
               style={{
                 background: canGoPrev ? "var(--cf-card)" : "transparent",
                 borderColor: "var(--cf-border)",
                 color: canGoPrev ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-5 h-5 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m15 18-6-6 6-6" />
               </svg>
             </button>
@@ -144,14 +143,14 @@ export function ProjectSpotlights() {
               onClick={handleNext}
               disabled={!canGoNext}
               aria-label="Next story"
-              className="w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
+              className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
               style={{
                 background: canGoNext ? "var(--cf-raised)" : "transparent",
                 borderColor: "var(--cf-border)",
                 color: canGoNext ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg className="w-5 h-5 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m9 18 6-6-6-6" />
               </svg>
             </button>
@@ -160,14 +159,13 @@ export function ProjectSpotlights() {
       </div>
 
       {/* Offside Bleed Carousel Track */}
-      {/* Exactly aligned with header container left edge: max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem)) */}
       <div
         ref={trackRef}
-        className="mt-10 flex gap-6 sm:gap-8 overflow-x-auto scrollbar-none pt-2 pb-6 snap-x snap-mandatory"
+        className="mt-6 sm:mt-10 flex gap-4 sm:gap-6 lg:gap-8 overflow-x-auto scrollbar-none pt-2 pb-6 snap-x snap-mandatory"
         style={{
-          paddingLeft: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))",
-          paddingRight: "max(1.5rem, 8vw)",
-          scrollPaddingLeft: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))",
+          paddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.5rem))",
+          paddingRight: "max(1.25rem, 8vw)",
+          scrollPaddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.5rem))",
         }}
       >
         {PROJECTS.map((project, idx) => {
@@ -176,34 +174,37 @@ export function ProjectSpotlights() {
             <article
               key={project.id}
               data-spotlight-card
-              className="group shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950 snap-start"
+              className="group shrink-0 w-[88vw] sm:w-[75vw] lg:w-[860px] flex flex-col md:block md:aspect-[16/9.5] rounded-2xl sm:rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950 snap-start"
               style={{
-                borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
+                borderColor: isActive ? "rgba(255, 255, 255, 0.22)" : "var(--cf-border)",
               }}
             >
-              {/* Media image container with flush left alignment */}
-              <div className="w-full h-full p-6 sm:p-8 flex items-center justify-start">
+              {/* Top-Left: Pure Client Brand Lockup (Relative on mobile, absolute on desktop) */}
+              <div className="px-5 pt-5 pb-3 sm:px-8 sm:pt-8 md:absolute md:top-8 md:left-8 md:p-0 z-20 flex items-center justify-between">
+                <span className="cf-mono text-[11px] sm:text-xs lg:text-[13px] font-bold tracking-[0.22em] text-cyan-400 md:text-white/90 uppercase drop-shadow-md">
+                  {project.client}
+                </span>
+                <span className="cf-mono text-[10px] text-zinc-500 md:hidden">
+                  {project.n} / {PROJECTS.length}
+                </span>
+              </div>
+
+              {/* Media image container: responsive height on mobile with high visibility */}
+              <div className="w-full h-48 sm:h-64 md:h-full p-4 sm:p-6 md:p-8 flex items-center justify-center md:justify-start overflow-hidden relative bg-zinc-950/80">
                 <img
                   src={project.img}
                   alt={project.client}
-                  className="max-w-full max-h-full object-contain object-left rounded-xl transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                  className="max-w-full max-h-full object-contain object-center md:object-left rounded-lg sm:rounded-xl transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                   loading="lazy"
                 />
               </div>
 
-              {/* Clean Cinematic Gradient Scrim */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30" />
+              {/* Cinematic Gradient Scrim (Desktop full overlay, mobile subtle bottom transition) */}
+              <div className="pointer-events-none hidden md:block absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/30" />
 
-              {/* Top-Left: Pure Client Brand Lockup */}
-              <div className="absolute top-6 left-6 sm:top-8 sm:left-8">
-                <span className="cf-mono text-xs sm:text-[13px] font-bold tracking-[0.22em] text-white/90 uppercase drop-shadow-md">
-                  {project.client}
-                </span>
-              </div>
-
-              {/* Bottom-Left: Punchy Single-Sentence Metric Hook */}
-              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 max-w-xl text-left">
-                <h3 className="text-xl sm:text-2xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-md">
+              {/* Impact Hook: Natural vertical stack on mobile with solid readability scrim, pinned bottom-left on desktop */}
+              <div className="p-5 sm:p-6 md:p-0 md:absolute md:bottom-8 md:left-8 md:right-8 max-w-xl text-left bg-gradient-to-t from-zinc-950 via-zinc-950/95 to-transparent md:bg-none z-20 border-t border-zinc-900 md:border-0">
+                <h3 className="text-base sm:text-xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-md">
                   <span className="font-bold text-white tracking-tight mr-2 underline decoration-cyan-400/80 decoration-2 underline-offset-4">
                     {project.metric}
                   </span>
@@ -216,10 +217,10 @@ export function ProjectSpotlights() {
       </div>
 
       {/* Single Clean "View all projects" CTA Button */}
-      <div className="mt-12 flex justify-center">
+      <div className="mt-8 sm:mt-12 flex justify-center px-5">
         <a
           href="/case-study/legalizin"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 border hover:bg-white/10 shadow-lg"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 border hover:bg-white/10 shadow-lg active:scale-95"
           style={{
             background: "var(--cf-card)",
             borderColor: "var(--cf-border)",
