@@ -24,7 +24,7 @@ export function HeroCraft() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse 60% 55% at 50% 50%, rgba(9,9,11,0.55) 0%, transparent 70%), linear-gradient(180deg, #09090b 0%, transparent 18%, transparent 78%, #09090b 100%)",
+            "radial-gradient(ellipse 60% 55% at 50% 50%, color-mix(in srgb, var(--cf-bg) 55%, transparent) 0%, transparent 70%), linear-gradient(180deg, var(--cf-bg) 0%, transparent 18%, transparent 78%, var(--cf-bg) 100%)",
         }}
       />
       <div
@@ -48,18 +48,18 @@ export function HeroCraft() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.08 }}
-          className="cf-display text-balance drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
+          className="cf-display text-balance dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
           style={{ fontWeight: 700, fontSize: "clamp(2.5rem, 6.5vw, 5rem)", letterSpacing: "-0.055em", lineHeight: 0.98, color: "var(--cf-fg)" }}
         >
           A design and engineering partner{" "}
-          <span className="text-zinc-400 dark:text-zinc-300">for scale-ups and enterprise products.</span>
+          <span className="text-zinc-500 dark:text-zinc-300">for scale-ups and enterprise products.</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.18 }}
-          className="mt-7 max-w-2xl text-base leading-relaxed sm:text-lg text-zinc-300 dark:text-zinc-200 drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]"
+          className="mt-7 max-w-2xl text-base leading-relaxed sm:text-lg text-zinc-600 dark:text-zinc-300 dark:drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]"
         >
           PT Digitas Solusi Indonesia acts as an elite extension of your in-house team: high-fidelity product design, high-converting web experiences, growth architecture and resilient digital systems, shipped at scale.
         </motion.p>
@@ -75,7 +75,7 @@ export function HeroCraft() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.95 }}
             transition={spring}
-            className="inline-flex h-12 items-center gap-2 rounded-full px-7 text-[15px] font-semibold shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+            className="inline-flex h-12 items-center gap-2 rounded-full px-7 text-[15px] font-semibold dark:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             style={{ background: "var(--cf-inv-bg)", color: "var(--cf-inv-fg)" }}
           >
             Explore capabilities <ArrowRight size={16} />
@@ -85,7 +85,10 @@ export function HeroCraft() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.95 }}
             transition={spring}
-            className="inline-flex h-12 items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/80 px-7 text-[15px] font-semibold text-white backdrop-blur-md hover:bg-zinc-800"
+            className="inline-flex h-12 items-center gap-2 rounded-full border px-7 text-[15px] font-semibold backdrop-blur-md"
+            style={{ borderColor: "var(--cf-border)", background: "var(--cf-card)", color: "var(--cf-fg)" }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--cf-raised)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--cf-card)")}
           >
             Featured Work <ArrowUpRight size={16} />
           </motion.a>

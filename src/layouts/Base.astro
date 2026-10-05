@@ -141,7 +141,6 @@ const isLoggedIn = !!Astro.locals.user;
 					height="26"
 					class="cf-brand-icon object-contain"
 				/>
-				<span class="cf-brand-text">Digitas</span>
 			</a>
 
 			<nav class="cf-cap cf-pillnav" aria-label="Primary">
@@ -559,8 +558,8 @@ const isLoggedIn = !!Astro.locals.user;
 				-webkit-backdrop-filter: blur(18px) saturate(1.4);
 				box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
 			}
-			.cf-brand { justify-self: start; padding: 0 16px; color: var(--cf-fg) !important; display: inline-flex; align-items: center; gap: 9px; }
-			.cf-brand-icon { width: 22px; height: 22px; display: block; object-fit: contain; }
+			.cf-brand { justify-self: start; padding: 0 10px; width: 44px; height: 44px; justify-content: center; color: var(--cf-fg) !important; display: inline-flex; align-items: center; border-radius: 999px; }
+			.cf-brand-icon { width: 26px; height: 26px; display: block; object-fit: contain; }
 			.ft-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
 			.footer-brand-icon { width: 26px; height: 26px; display: block; object-fit: contain; }
 			.footer-brand-name { font: 700 18px/1 var(--font-display, sans-serif); color: var(--cf-fg); letter-spacing: -0.02em; }
@@ -572,7 +571,6 @@ const isLoggedIn = !!Astro.locals.user;
 				background: var(--cf-inv-bg); color: var(--cf-inv-fg);
 				font: 800 15px/1 var(--font-display, sans-serif);
 			}
-			.cf-brand-text { font: 600 15px/1 var(--font-display, sans-serif); letter-spacing: -0.02em; }
 			.cf-pillnav { position: relative; gap: 2px; padding: 0 4px; }
 			.cf-hover-pill {
 				position: absolute; left: 0; top: 5px; bottom: 5px; border-radius: 999px;

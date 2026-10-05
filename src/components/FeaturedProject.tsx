@@ -94,7 +94,7 @@ export function FeaturedProject() {
               ))}
             </ul>
             <div className="mt-6 flex min-h-[220px] flex-1 items-center justify-center">
-              <Vault intensity={0.6} theme="dark" label="Zero-egress document vault" />
+              <Vault intensity={0.6} theme="auto" label="Zero-egress document vault" />
             </div>
           </article>
 

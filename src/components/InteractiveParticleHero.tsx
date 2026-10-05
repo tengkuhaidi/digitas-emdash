@@ -72,6 +72,7 @@ export function InteractiveParticleHero() {
 
     const R2 = RADIUS * RADIUS;
     const frame = (t: number) => {
+      const light = document.documentElement.classList.contains("light");
       raf = requestAnimationFrame(frame);
       if (!visible || !parts.length) return;
       const s = t / 1000;
@@ -97,7 +98,10 @@ export function InteractiveParticleHero() {
         p.currentSize += (ts - p.currentSize) * 0.15;
         // white -> cyan tint by magnification
         const m = Math.min(1, (p.currentSize / p.size - 1) / 1.6);
-        ctx.fillStyle = `rgba(${255 - 130 * m | 0},${255 - 20 * m | 0},255,${p.currentAlpha.toFixed(3)})`;
+        const a = p.currentAlpha;
+        ctx.fillStyle = light
+          ? `rgba(${30 - 20 * m | 0},${40 + 70 * m | 0},${50 + 130 * m | 0},${(a * 0.75).toFixed(3)})`
+          : `rgba(${255 - 130 * m | 0},${255 - 20 * m | 0},255,${a.toFixed(3)})`;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.currentSize, 0, 6.2832); ctx.fill();
       }
     };
