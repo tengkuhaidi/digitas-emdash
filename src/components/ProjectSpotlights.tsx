@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface Project {
   n: string;
@@ -108,7 +108,7 @@ export function ProjectSpotlights() {
             </p>
           </div>
 
-          {/* Prominent TryProfound-Sized Arrow Controls */}
+          {/* Prominent TryProfound-Sized Arrow Controls with Large Bold Vectors */}
           <div className="flex items-center gap-3 shrink-0 self-start md:self-end">
             <button
               onClick={handlePrev}
@@ -121,7 +121,9 @@ export function ProjectSpotlights() {
                 color: canGoPrev ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <ChevronLeft className="w-8 h-8 stroke-[2.5]" />
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
             </button>
             <button
               onClick={handleNext}
@@ -134,24 +136,25 @@ export function ProjectSpotlights() {
                 color: canGoNext ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <ChevronRight className="w-8 h-8 stroke-[2.5]" />
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
             </button>
           </div>
         </div>
       </div>
 
       {/* Offside Bleed Carousel Track */}
-      {/* Container offset left: max-w-6xl has max-width 72rem (1152px) with px-5 (1.25rem/20px). */}
-      {/* On desktop >= 1152px, the content left edge is calc((100vw - 1152px)/2 + 20px). */}
+      {/* Precision grid alignment: H2 starts at max(1.25rem, calc((100vw - 72rem) / 2 + 1.25rem)). */}
+      {/* We set paddingLeft so that Card's inner image starts exactly on this line! */}
       <div
         ref={trackRef}
         className="mt-10 flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth scrollbar-none pt-2 pb-6"
         style={{
-          paddingLeft: "calc(max(1.25rem, (100vw - 72rem) / 2 + 1.25rem))",
+          paddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.25rem))",
           paddingRight: "max(1.25rem, 8vw)",
         }}
       >
-        {/* Leading spacer dummy item to absorb any initial scroll offset or ensure direct alignment */}
         {PROJECTS.map((project, idx) => {
           const isActive = idx === currentIndex;
           return (
@@ -163,8 +166,8 @@ export function ProjectSpotlights() {
                 borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
               }}
             >
-              {/* Media image container with left alignment */}
-              <div className="w-full h-full p-6 sm:p-10 flex items-center justify-start">
+              {/* Media image container with flush left alignment */}
+              <div className="w-full h-full p-6 sm:p-8 flex items-center justify-start">
                 <img
                   src={project.img}
                   alt={project.client}
@@ -177,14 +180,14 @@ export function ProjectSpotlights() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30" />
 
               {/* Top-Left: Pure Client Brand Lockup */}
-              <div className="absolute top-6 left-6 sm:top-8 sm:left-10">
+              <div className="absolute top-6 left-6 sm:top-8 sm:left-8">
                 <span className="cf-mono text-xs sm:text-[13px] font-bold tracking-[0.22em] text-white/90 uppercase drop-shadow-md">
                   {project.client}
                 </span>
               </div>
 
               {/* Bottom-Left: Punchy Single-Sentence Metric Hook */}
-              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-10 max-w-xl text-left">
+              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 max-w-xl text-left">
                 <h3 className="text-xl sm:text-2xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-md">
                   <span className="font-bold text-white tracking-tight mr-2 underline decoration-cyan-400/80 decoration-2 underline-offset-4">
                     {project.metric}
