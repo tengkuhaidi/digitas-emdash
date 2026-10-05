@@ -1,104 +1,55 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ArrowUpRight, ArrowRight } from "lucide-react";
-
-interface ProjectFeature {
-  label: string;
-  metric: string;
-  desc: string;
-}
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 
 interface Project {
   n: string;
   id: string;
-  title: string;
   client: string;
-  accent: string;
-  accentGlow: string;
-  statHighlight: string;
-  statLabel: string;
-  headlineQuote: string;
+  metric: string;
+  impactHook: string;
+  attribution: string;
   img: string;
   url: string;
-  caseStudyUrl?: string;
-  liveUrl?: string;
-  summary: string;
-  deepDive: string;
-  features: ProjectFeature[];
-  tags: string[];
+  linkText: string;
+  linkHref: string;
 }
 
 const PROJECTS: Project[] = [
   {
     n: "01",
     id: "legalizin",
-    title: "Legalizin.com",
-    client: "Legalizin RegTech Engine",
-    accent: "#06b6d4",
-    accentGlow: "rgba(6, 182, 212, 0.2)",
-    statHighlight: "< 20ms",
-    statLabel: "Edge Response Latency",
-    headlineQuote: "Indonesia's automated business licensing engine with zero manual filing bottlenecks.",
+    client: "LEGALIZIN",
+    metric: "< 20ms",
+    impactHook: "sub-20ms corporate formation and statutory licensing platform running completely serverless on the edge.",
+    attribution: "Tengku Haidi · Founder & Lead Systems Architect",
     img: "/images/case-study/legalizin-preview.png",
-    url: "legalizin.com",
-    caseStudyUrl: "/case-study/legalizin",
-    liveUrl: "https://legalizin.com",
-    summary:
-      "Indonesia's automated business licensing operating system. Replaces bureaucratic queues with a continuous digital journey from instant name verification to statutory compliance.",
-    deepDive:
-      "Engineered on Cloudflare Edge runtime with sub-20ms response times nationwide. Features real-time KBLI 2025 classification, automatic AHU filing generation, and autonomous AI search indexing.",
-    features: [
-      { label: "Edge Speed", metric: "< 20ms", desc: "Edge SSR rendering under 20ms nationwide" },
-      { label: "KBLI 2025 AI", metric: "1,559 Codes", desc: "Instant classification matching OSS RBA" },
-      { label: "AI WhatsApp CS", metric: "Instant", desc: "24/7 automated consultation & dispatch" },
-    ],
-    tags: ["RegTech", "Edge SSR", "KBLI 2025", "AI Automation"],
+    url: "https://legalizin.com",
+    linkText: "View platform",
+    linkHref: "https://legalizin.com",
   },
   {
     n: "02",
     id: "vms",
-    title: "VMS Enterprise",
-    client: "High-Throughput PropTech",
-    accent: "#10b981",
-    accentGlow: "rgba(16, 185, 129, 0.2)",
-    statHighlight: "99.4%",
-    statLabel: "National ID OCR Accuracy",
-    headlineQuote: "Eliminating lobby queue congestion across multi-tenant commercial towers.",
+    client: "VMS ENTERPRISE",
+    metric: "99.4%",
+    impactHook: "instant national ID recognition via computer vision, eliminating lobby queue congestion across commercial towers.",
+    attribution: "Commercial PropTech & Security Systems",
     img: "/images/case-study/vms-enterprise.png",
-    url: "vms.digitas.id",
-    liveUrl: "https://vms.digitas.id",
-    summary:
-      "Enterprise building reception and physical security platform engineered for commercial towers to eliminate manual paper guestbooks and receptionist bottlenecks.",
-    deepDive:
-      "Pairs front-desk kiosks with containerized PaddleOCR and OpenCV microservices for instant 16-digit national ID recognition, multi-tower access delegation, and dynamic turnstile QR barcoding.",
-    features: [
-      { label: "Identity OCR", metric: "99.4%", desc: "Sub-second KTP parsing via PaddleOCR" },
-      { label: "Multi-Tower", metric: "Unlimited", desc: "Unified reception for multi-tenant towers" },
-      { label: "Turnstile Gate", metric: "Zero Touch", desc: "Dynamic time-bound access barcoding" },
-    ],
-    tags: ["PropTech", "Computer Vision", "PaddleOCR", "Docker"],
+    url: "https://vms.digitas.id",
+    linkText: "View system",
+    linkHref: "https://vms.digitas.id",
   },
   {
     n: "03",
     id: "doc-tracking",
-    title: "Corp Document Tracking",
-    client: "PT Metropolitan Kentjana Tbk",
-    accent: "#3b82f6",
-    accentGlow: "rgba(59, 130, 246, 0.2)",
-    statHighlight: "100%",
-    statLabel: "Immutable Audit Ledger",
-    headlineQuote: "Cryptographic handoff verification governing sensitive enterprise assets.",
+    client: "METROPOLITAN KENTJANA",
+    metric: "100%",
+    impactHook: "tamper-evident audit trail and cryptographic workflow routing governing mission-critical physical files.",
+    attribution: "PT Metropolitan Kentjana Tbk · Pondok Indah Group",
     img: "/images/case-study/metropolitan-kentjana-doc-tracking.png",
-    url: "tracking.mkentjana.co.id",
-    summary:
-      "Mission-critical physical and digital document tracking system built for public developer PT Metropolitan Kentjana Tbk (Pondok Indah Group).",
-    deepDive:
-      "Transforms inter-departmental document handoffs into an authenticated workflow engine. Features cryptographic digital signature stamping, dynamic QR verification seals, and granular department SLA tracking.",
-    features: [
-      { label: "Handoff Routing", metric: "Zero Delay", desc: "Enforced milestone handoffs with SLA timers" },
-      { label: "Dynamic QR Seal", metric: "Verified", desc: "Tamper-evident verification on physical paper" },
-      { label: "Digital Signature", metric: "Secured", desc: "Multi-tier department executive sign-off" },
-    ],
-    tags: ["Enterprise B2B", "Audit Trail", "QR Verification", "Public Developer"],
+    url: "https://tracking.mkentjana.co.id",
+    linkText: "View case study",
+    linkHref: "#method",
   },
 ];
 
@@ -157,11 +108,8 @@ export function ProjectSpotlights() {
     >
       {/* Container aligned Header */}
       <div className="mx-auto max-w-6xl px-5">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b" style={{ borderColor: "var(--cf-border)" }}>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b" style={{ borderColor: "var(--cf-border)" }}>
           <div className="max-w-2xl">
-            <p className="cf-mono text-[11px] uppercase tracking-[0.24em] text-cyan-400 mb-3">
-              PROJECT SPOTLIGHTS
-            </p>
             <h2
               className="cf-display text-3xl sm:text-5xl lg:text-[46px] font-semibold tracking-tight leading-[1.08]"
               style={{ color: "var(--cf-fg)" }}
@@ -176,13 +124,13 @@ export function ProjectSpotlights() {
             </p>
           </div>
 
-          {/* TryProfound Style Arrow Controls */}
+          {/* Clean Arrow Controls */}
           <div className="flex items-center gap-2 shrink-0 self-start md:self-end">
             <button
               onClick={handlePrev}
               disabled={!canGoPrev}
-              aria-label="Previous project"
-              className="w-10 h-10 rounded-lg flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
+              aria-label="Previous story"
+              className="w-10 h-10 rounded-lg flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20"
               style={{
                 background: canGoPrev ? "var(--cf-card)" : "transparent",
                 borderColor: "var(--cf-border)",
@@ -194,8 +142,8 @@ export function ProjectSpotlights() {
             <button
               onClick={handleNext}
               disabled={!canGoNext}
-              aria-label="Next project"
-              className="w-10 h-10 rounded-lg flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
+              aria-label="Next story"
+              className="w-10 h-10 rounded-lg flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20"
               style={{
                 background: canGoNext ? "var(--cf-raised)" : "transparent",
                 borderColor: "var(--cf-border)",
@@ -223,151 +171,55 @@ export function ProjectSpotlights() {
             <article
               key={project.id}
               data-spotlight-card
-              className="group snap-start shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] rounded-3xl border overflow-hidden flex flex-col justify-between transition-all duration-500"
+              className="group snap-start shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl"
               style={{
                 background: "var(--cf-card)",
-                borderColor: isActive ? "rgba(6, 182, 212, 0.4)" : "var(--cf-border)",
-                boxShadow: isActive ? `0 24px 60px -20px ${project.accentGlow}` : "none",
+                borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
               }}
             >
-              {/* Card Top: Browser Window Stage with Screenshot */}
-              <div className="relative border-b" style={{ borderColor: "var(--cf-border)" }}>
-                {/* Window Chrome */}
-                <div
-                  className="flex items-center justify-between px-4 py-3 border-b"
-                  style={{ background: "var(--cf-bg)", borderColor: "var(--cf-border)" }}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-zinc-700/60" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-zinc-700/60" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-zinc-700/60" />
-                    <span
-                      className="cf-mono text-[11px] ml-2 px-2.5 py-0.5 rounded-md border"
-                      style={{ borderColor: "var(--cf-border)", color: "var(--cf-muted)" }}
-                    >
-                      {project.url}
-                    </span>
-                  </div>
+              {/* Full-bleed media visual */}
+              <img
+                src={project.img}
+                alt={project.client}
+                className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                loading="lazy"
+              />
 
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="cf-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full border"
-                      style={{ borderColor: project.accent, color: project.accent }}
-                    >
-                      {project.n} // {project.title.toUpperCase()}
-                    </span>
-                  </div>
-                </div>
+              {/* Clean Cinematic Gradient Scrim (No Browser Chrome) */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/30" />
 
-                {/* Screenshot Frame with Gradient Vignette */}
-                <div className="relative aspect-[16/9] sm:aspect-[16/8.5] w-full overflow-hidden bg-zinc-950">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.015]"
-                    loading="lazy"
-                  />
-                  {/* Subtle edge vignette */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-                  {/* Top-Left Floating Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="cf-mono text-[11px] font-bold tracking-wider px-3 py-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-white shadow-lg">
-                      {project.client.toUpperCase()}
-                    </span>
-                  </div>
-
-                  {/* Floating Metric Callout Card */}
-                  <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-md p-4 rounded-2xl bg-black/80 backdrop-blur-xl border border-white/10 text-white shadow-2xl">
-                    <div className="flex items-baseline gap-3">
-                      <span className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ color: project.accent }}>
-                        {project.statHighlight}
-                      </span>
-                      <span className="cf-mono text-xs uppercase tracking-wider text-zinc-300">
-                        {project.statLabel}
-                      </span>
-                    </div>
-                    <p className="mt-1.5 text-xs sm:text-[13px] text-zinc-300 leading-snug line-clamp-2">
-                      “{project.headlineQuote}”
-                    </p>
-                  </div>
-                </div>
+              {/* Top-Left: Pure Client Brand Lockup */}
+              <div className="absolute top-6 left-6 sm:top-8 sm:left-8">
+                <span className="cf-mono text-xs sm:text-[13px] font-bold tracking-[0.22em] text-white/90 uppercase drop-shadow-md">
+                  {project.client}
+                </span>
               </div>
 
-              {/* Card Bottom: Editorial Brief & Action Controls */}
-              <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
-                <div>
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                    <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight" style={{ color: "var(--cf-fg)" }}>
-                      {project.title}
-                    </h3>
-                    <span className="cf-mono text-xs" style={{ color: project.accent }}>
-                      {project.client}
-                    </span>
-                  </div>
+              {/* Bottom-Left: Punchy Metric + Hook + Attribution + Button */}
+              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 max-w-xl text-left">
+                {/* Big Bold Impact Hook */}
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-medium tracking-tight text-white leading-snug drop-shadow-md">
+                  <span className="font-bold text-white tracking-tight mr-2 underline decoration-cyan-400/80 decoration-2 underline-offset-4">
+                    {project.metric}
+                  </span>
+                  {project.impactHook}
+                </h3>
 
-                  <p className="mt-3 text-sm sm:text-base leading-relaxed" style={{ color: "var(--cf-muted)" }}>
-                    {project.deepDive}
-                  </p>
+                {/* Subtitle Attribution */}
+                <p className="mt-3 text-xs sm:text-sm text-zinc-300 font-medium">
+                  {project.attribution}
+                </p>
 
-                  {/* 3 Metric Pills */}
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                    {project.features.map((feat) => (
-                      <div
-                        key={feat.label}
-                        className="p-3 rounded-xl border flex flex-col justify-between"
-                        style={{ background: "var(--cf-bg)", borderColor: "var(--cf-border)" }}
-                      >
-                        <span className="cf-mono text-[10px] uppercase tracking-wider" style={{ color: "var(--cf-dim)" }}>
-                          {feat.label}
-                        </span>
-                        <span className="text-sm font-semibold mt-1" style={{ color: "var(--cf-fg)" }}>
-                          {feat.metric}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Card Footer: Tags & Links */}
-                <div
-                  className="mt-8 pt-5 border-t flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-                  style={{ borderColor: "var(--cf-border)" }}
-                >
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="cf-mono text-[11px] px-2.5 py-1 rounded-lg border whitespace-nowrap"
-                        style={{ borderColor: "var(--cf-border)", color: "var(--cf-muted)", background: "var(--cf-bg)" }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    {project.caseStudyUrl && (
-                      <a
-                        href={project.caseStudyUrl}
-                        className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-semibold transition-opacity hover:opacity-80"
-                        style={{ color: "var(--cf-fg)" }}
-                      >
-                        Case Study <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-medium transition-colors hover:text-cyan-400"
-                        style={{ color: "var(--cf-muted)" }}
-                      >
-                        Live Platform <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                  </div>
+                {/* Sleek Pill Button */}
+                <div className="mt-5">
+                  <a
+                    href={project.linkHref}
+                    target={project.linkHref.startsWith("http") ? "_blank" : undefined}
+                    rel={project.linkHref.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/15 hover:border-white/30"
+                  >
+                    {project.linkText} <ArrowUpRight className="w-4 h-4 text-white/70" />
+                  </a>
                 </div>
               </div>
             </article>
