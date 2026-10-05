@@ -107,6 +107,9 @@ const isLoggedIn = !!Astro.locals.user;
 		<Font cssVariable="--font-display" preload />
 		<Font cssVariable="--font-body" preload />
 		<Font cssVariable="--font-mono" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/favicon.png" />
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
 		<script is:inline>
@@ -131,8 +134,8 @@ const isLoggedIn = !!Astro.locals.user;
 		<EmDashBodyStart page={pageCtx} />
 		<header class="cf-header">
 			<a href="/" class="cf-cap cf-brand" aria-label={siteTitle}>
-				<span class="cf-mark" aria-hidden="true">D</span>
-				<span class="cf-brand-text">Digitas</span>
+				<img src="/logo-digitas-dark.png" alt="Digitas" width="448" height="217" class="cf-logo cf-logo-dark" />
+				<img src="/logo-digitas.png" alt="Digitas" width="448" height="215" class="cf-logo cf-logo-light" />
 			</a>
 
 			<nav class="cf-cap cf-pillnav" aria-label="Primary">
@@ -214,7 +217,10 @@ const isLoggedIn = !!Astro.locals.user;
 
 				<div class="ft-grid">
 					<div class="ft-col ft-brand">
-						<a href="/" class="ft-mono" aria-label="Digitas home">D</a>
+						<a href="/" class="ft-logo" aria-label="Digitas home">
+							<img src="/logo-digitas-dark.png" alt="Digitas" width="448" height="217" class="cf-logo-dark" loading="lazy" />
+							<img src="/logo-digitas.png" alt="Digitas" width="448" height="215" class="cf-logo-light" loading="lazy" />
+						</a>
 						<p class="ft-company">PT Digitas Solusi Indonesia</p>
 						<p class="ft-mission">Engineering studio building resilient products, systems and growth infrastructure from Jakarta.</p>
 						<p class="ft-clock"><span data-jkt-time>Jakarta · UTC+7</span></p>
@@ -540,7 +546,13 @@ const isLoggedIn = !!Astro.locals.user;
 				-webkit-backdrop-filter: blur(18px) saturate(1.4);
 				box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
 			}
-			.cf-brand { justify-self: start; gap: 10px; padding: 0 16px 0 6px; color: var(--cf-fg) !important; }
+			.cf-brand { justify-self: start; padding: 0 18px; color: var(--cf-fg) !important; }
+			.cf-logo { height: 24px; width: auto; display: block; }
+			.ft-logo { display: inline-block; }
+			.ft-logo img { height: 34px; width: auto; display: block; }
+			.cf-logo-light { display: none !important; }
+			:root.light .cf-logo-dark { display: none !important; }
+			:root.light .cf-logo-light { display: block !important; }
 			.cf-mark {
 				display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
 				background: var(--cf-inv-bg); color: var(--cf-inv-fg);
