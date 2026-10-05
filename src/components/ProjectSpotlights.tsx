@@ -108,39 +108,39 @@ export function ProjectSpotlights() {
             </p>
           </div>
 
-          {/* Clean Arrow Controls */}
-          <div className="flex items-center gap-2 shrink-0 self-start md:self-end">
+          {/* Prominent TryProfound-Sized Arrow Controls */}
+          <div className="flex items-center gap-3 shrink-0 self-start md:self-end">
             <button
               onClick={handlePrev}
               disabled={!canGoPrev}
               aria-label="Previous story"
-              className="w-10 h-10 rounded-lg flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20"
+              className="w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95"
               style={{
                 background: canGoPrev ? "var(--cf-card)" : "transparent",
                 borderColor: "var(--cf-border)",
                 color: canGoPrev ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-7 h-7" />
             </button>
             <button
               onClick={handleNext}
               disabled={!canGoNext}
               aria-label="Next story"
-              className="w-10 h-10 rounded-lg flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20"
+              className="w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95"
               style={{
                 background: canGoNext ? "var(--cf-raised)" : "transparent",
                 borderColor: "var(--cf-border)",
                 color: canGoNext ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-7 h-7" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Offside Bleed Carousel Track */}
+      {/* Offside Bleed Carousel Track - Strictly Placed so First Card Inner Content aligns with Header */}
       <div
         ref={trackRef}
         className="mt-10 flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory pt-2 pb-6"
@@ -160,12 +160,12 @@ export function ProjectSpotlights() {
                 borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
               }}
             >
-              {/* Media image centered and fitted */}
-              <div className="w-full h-full p-4 sm:p-8 flex items-center justify-center">
+              {/* Media image container with generous left padding so graphic aligns flush with text */}
+              <div className="w-full h-full p-4 sm:p-8 pl-6 sm:pl-12 flex items-center justify-start">
                 <img
                   src={project.img}
                   alt={project.client}
-                  className="w-full h-full object-contain object-center rounded-xl transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                  className="max-w-full max-h-full object-contain object-left rounded-xl transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                   loading="lazy"
                 />
               </div>
@@ -173,15 +173,15 @@ export function ProjectSpotlights() {
               {/* Clean Cinematic Gradient Scrim */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30" />
 
-              {/* Top-Left: Pure Client Brand Lockup */}
-              <div className="absolute top-6 left-6 sm:top-8 sm:left-8">
+              {/* Top-Left: Pure Client Brand Lockup aligned with inner padding */}
+              <div className="absolute top-6 left-6 sm:top-8 sm:left-12">
                 <span className="cf-mono text-xs sm:text-[13px] font-bold tracking-[0.22em] text-white/90 uppercase drop-shadow-md">
                   {project.client}
                 </span>
               </div>
 
-              {/* Bottom-Left: Punchy Single-Sentence Metric Hook */}
-              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 max-w-xl text-left">
+              {/* Bottom-Left: Punchy Single-Sentence Metric Hook aligned with inner padding */}
+              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-12 max-w-xl text-left">
                 <h3 className="text-xl sm:text-2xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-md">
                   <span className="font-bold text-white tracking-tight mr-2 underline decoration-cyan-400/80 decoration-2 underline-offset-4">
                     {project.metric}
