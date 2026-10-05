@@ -116,17 +116,13 @@ export function ToolsMastered() {
                 className="flex items-center gap-3.5 px-6 sm:px-8 shrink-0 group select-none"
               >
                 <div
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 shadow-sm p-2"
-                  style={{
-                    background: "var(--cf-raised)",
-                    borderColor: "var(--cf-border)",
-                  }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center border transition-all duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 shadow-sm p-2 bg-zinc-900 border-zinc-800"
                 >
                   <img
                     src={tool.icon}
                     alt={tool.name}
-                    className={`max-w-full max-h-full object-contain filter transition-all duration-300 ${
-                      tool.isImg ? "rounded-sm" : "brightness-90 invert group-hover:brightness-100"
+                    className={`w-6 h-6 object-contain transition-all duration-300 ${
+                      tool.isImg ? "rounded-full" : "opacity-90 group-hover:opacity-100"
                     }`}
                     loading="lazy"
                   />
