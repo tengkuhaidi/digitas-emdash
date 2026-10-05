@@ -6,7 +6,9 @@ import {
 } from "emdash";
 import Base from "../layouts/Base.astro";
 import { HeroCraft } from "../components/HeroCraft";
-import { ServicesShowcase } from "../components/ServicesShowcase";
+import { ClientMarquee } from "../components/ClientMarquee";
+import { ServicesBento } from "../components/ServicesBento";
+import { AutonomousSystemsSection } from "../components/AutonomousSystemsSection";
 import { FeaturedProject } from "../components/FeaturedProject";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
 
@@ -38,7 +40,9 @@ const postsWithTags = posts.map((post) => ({
 
 <Base title="PT Digitas Solusi Indonesia" description="A design and engineering partner for scale-ups and enterprise products. Web, systems, enterprise AI, UI/UX, SEO/SEM, brand and problem solving.">
 	<HeroCraft client:load />
-	<ServicesShowcase client:visible />
+	<ClientMarquee />
+	<ServicesBento client:visible />
+	<AutonomousSystemsSection client:visible />
 	<FeaturedProject client:visible />
 
 	<section class="px-5 py-20 sm:py-28" style="background: var(--cf-bg)">

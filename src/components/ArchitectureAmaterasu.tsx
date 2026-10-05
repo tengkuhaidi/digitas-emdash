@@ -25,7 +25,7 @@ export function ArchitectureAmaterasu() {
       num: "04",
       name: "REGTECH LOGIC",
       technology: "Deterministic Legal Verification",
-      summary: "Specialized algorithmic rulesets enforcing Indonesian corporate law, KBLI 2020 classifications, AHU entity naming verification, and OSS RBA compliance."
+      summary: "Specialized algorithmic rulesets enforcing Indonesian corporate law, KBLI 2025 classifications, AHU entity naming verification, and OSS RBA compliance."
     }
   ];
 

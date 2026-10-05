@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Vault } from "@lucasmarkes/hairline/react";
+import { useState } from "react";
 
 const spring = { type: "spring", stiffness: 260, damping: 26 } as const;
 
@@ -24,12 +24,52 @@ const Metric = ({ v }: { v: string }) => (
 );
 
 const SMALL = [
-  { label: "ORGANIC DISCOVERY", v: "#1", unit: "Google Organic Rank", body: "Programmatic SEO architecture, automated Google Instant Indexing API triggers, structured legal taxonomy." },
-  { label: "STATUTORY AUTOMATION", v: "15+", unit: "Entity Workflows", body: "Automated intake for PT, CV, PT PMA, Yayasan, and KBLI 2020 multi-sector classification." },
-  { label: "DATA INTEGRITY", v: "100%", unit: "Zero-Egress Cloud", body: "Cryptographically isolated deed repository and legal document vaults with zero bandwidth tax." },
+  { label: "ORGANIC DISCOVERY", v: "#1", unit: "di Pencarian Google", body: "Lead organik masuk tanpa iklan. Calon klien menemukan Legalizin sebelum menemukan kompetitor." },
+  { label: "STATUTORY AUTOMATION", v: "15+", unit: "Format Perizinan Otomatis", body: "PT, CV, PMA dan lainnya siap dalam hitungan jam, bukan minggu." },
+  { label: "DATA INTEGRITY", v: "100%", unit: "Brankas Dokumen Terenkripsi", body: "Akta & SK aman selamanya tanpa biaya server bulanan." },
 ];
 
-const CHIPS = ["Cloudflare Edge", "Workers", "D1 SQL", "R2 Storage"];
+const MODULES = [
+  { k: "AI CUSTOMER SERVICE", t: "AI Customer Service Chatbot", b: "CS agent otomatis yang menjawab konsultasi perizinan & rekomendasi KBLI 24/7 di WhatsApp, memangkas waktu tunggu dari hitungan jam ke hitungan detik.", m: "24/7", mu: "WhatsApp" },
+  { k: "AUTOPILOT GROWTH", t: "Self-Managing AI SEO Engine", b: "Sistem konten & ranking yang otomatis membaca tren pencarian izin usaha, mempublikasikan artikel terindeks Google dalam 15 menit, mendatangkan ribuan lead organik tanpa bakar budget ads harian.", m: "15 mnt", mu: "ke Google" },
+  { k: "SMART CLASSIFIER", t: "KBLI 2025 Smart Classifier", b: "Klasifikasi kode usaha OSS RBA terbaru 2025 secara instan hanya dari ketikan deskripsi bisnis user, mencegah penolakan sistem pemerintah.", m: "KBLI", mu: "2025" },
+  { k: "INSTANT EXPERIENCE", t: "Sub-20ms Instant Experience", b: "Halaman legalitas yang terbuka secepat kedipan mata (< 20ms) di HP lemot sekalipun, mencegah calon klien kabur ke kompetitor.", m: "< 20ms", mu: "di HP lemot" },
+];
+
+function Machine() {
+  const [open, setOpen] = useState(0);
+  return (
+    <ul className="mt-5 flex flex-1 flex-col gap-2">
+      {MODULES.map((m, i) => {
+        const on = open === i;
+        return (
+          <li key={m.t} className="flex-1">
+            <button
+              type="button"
+              aria-expanded={on}
+              onClick={() => setOpen(i)}
+              onMouseEnter={() => setOpen(i)}
+              className="flex h-full w-full flex-col justify-center rounded-2xl border p-4 text-left transition-colors"
+              style={{ borderColor: on ? "var(--cf-dim)" : "var(--cf-border)", background: on ? "var(--cf-raised)" : "var(--cf-bg)" }}
+            >
+              <span className="flex items-center justify-between gap-3">
+                <span>
+                  <span className="cf-mono block text-[10px] uppercase tracking-widest" style={{ color: "var(--cf-accent)" }}>{m.k}</span>
+                  <span className="cf-display mt-1 block text-[15px] font-semibold tracking-tight" style={{ color: "var(--cf-fg)" }}>{m.t}</span>
+                </span>
+                <span className="cf-mono shrink-0 text-right text-[11px]" style={{ color: "var(--cf-dim)" }}>
+                  <span className="cf-display block text-base font-bold" style={{ color: "var(--cf-fg)" }}>{m.m}</span>
+                  {m.mu}
+                </span>
+              </span>
+              {on && <span className="mt-2 block text-[13px] leading-relaxed" style={{ color: "var(--cf-muted)" }}>{m.b}</span>}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 export function FeaturedProject() {
   return (
@@ -58,7 +98,7 @@ export function FeaturedProject() {
           <article className={`${card} flex flex-col lg:col-span-7`} style={cardStyle}>
             <Label>SYSTEM IN ACTION</Label>
             <Title>Real-time Corporate Formation &amp; OSS RBA Verification</Title>
-            <Body>Next.js frontend served from the Cloudflare edge. Company names are checked as the user types, and filings sync directly with AHU / Kemenkumham.</Body>
+            <Body>Nama PT dicek instan saat user mengetik, langsung dari edge Cloudflare. Hasilnya tersambung ke proses AHU / Kemenkumham.</Body>
             <div className="mt-6 flex-1" style={{ perspective: "1400px" }}>
               <div
                 className="overflow-hidden rounded-xl border transition-transform duration-500 hover:[transform:rotateX(0deg)_rotateY(0deg)]"
@@ -80,22 +120,11 @@ export function FeaturedProject() {
             </div>
           </article>
 
-          {/* Card 2: architecture */}
+          {/* Card 2: business machine */}
           <article className={`${card} flex flex-col lg:col-span-5`} style={cardStyle}>
-            <Label>EDGE ARCHITECTURE</Label>
-            <Title>Sub-20ms Serverless Distribution</Title>
-            <div className="mt-5">
-              <div className="cf-display" style={{ fontWeight: 700, fontSize: "clamp(2.5rem, 5vw, 3.75rem)", letterSpacing: "-0.05em", lineHeight: 1, color: "var(--cf-fg)" }}>&lt; 20ms</div>
-              <p className="cf-mono mt-2 text-[11px] uppercase tracking-wider" style={{ color: "var(--cf-dim)" }}>Global Response Time</p>
-            </div>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {CHIPS.map((c) => (
-                <li key={c} className="cf-mono rounded-full border px-3 py-1 text-[11px]" style={{ borderColor: "var(--cf-border)", background: "var(--cf-raised)", color: "var(--cf-muted)" }}>{c}</li>
-              ))}
-            </ul>
-            <div className="mt-6 flex min-h-[220px] flex-1 items-center justify-center">
-              <Vault intensity={0.6} theme="auto" label="Zero-egress document vault" />
-            </div>
+            <Label>THE MODERN BUSINESS MACHINE</Label>
+            <Title>Bisnis zaman sekarang bisa sebegini otomatis.</Title>
+            <Machine />
           </article>
 
           {/* Cards 3-5 */}
