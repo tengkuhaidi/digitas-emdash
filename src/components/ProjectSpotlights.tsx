@@ -114,54 +114,57 @@ export function ProjectSpotlights() {
               onClick={handlePrev}
               disabled={!canGoPrev}
               aria-label="Previous story"
-              className="w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95"
+              className="w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
               style={{
                 background: canGoPrev ? "var(--cf-card)" : "transparent",
                 borderColor: "var(--cf-border)",
                 color: canGoPrev ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <ChevronLeft className="w-7 h-7" />
+              <ChevronLeft className="w-8 h-8 stroke-[2.5]" />
             </button>
             <button
               onClick={handleNext}
               disabled={!canGoNext}
               aria-label="Next story"
-              className="w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95"
+              className="w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-20 hover:scale-105 active:scale-95 shadow-md"
               style={{
                 background: canGoNext ? "var(--cf-raised)" : "transparent",
                 borderColor: "var(--cf-border)",
                 color: canGoNext ? "var(--cf-fg)" : "var(--cf-dim)",
               }}
             >
-              <ChevronRight className="w-7 h-7" />
+              <ChevronRight className="w-8 h-8 stroke-[2.5]" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Offside Bleed Carousel Track - Strictly Placed so First Card Inner Content aligns with Header */}
+      {/* Offside Bleed Carousel Track */}
+      {/* Container offset left: max-w-6xl has max-width 72rem (1152px) with px-5 (1.25rem/20px). */}
+      {/* On desktop >= 1152px, the content left edge is calc((100vw - 1152px)/2 + 20px). */}
       <div
         ref={trackRef}
-        className="mt-10 flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth scrollbar-none snap-x snap-mandatory pt-2 pb-6"
+        className="mt-10 flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth scrollbar-none pt-2 pb-6"
         style={{
-          paddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.25rem))",
+          paddingLeft: "calc(max(1.25rem, (100vw - 72rem) / 2 + 1.25rem))",
           paddingRight: "max(1.25rem, 8vw)",
         }}
       >
+        {/* Leading spacer dummy item to absorb any initial scroll offset or ensure direct alignment */}
         {PROJECTS.map((project, idx) => {
           const isActive = idx === currentIndex;
           return (
             <article
               key={project.id}
               data-spotlight-card
-              className="group snap-start shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950"
+              className="group shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950"
               style={{
                 borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
               }}
             >
-              {/* Media image container with generous left padding so graphic aligns flush with text */}
-              <div className="w-full h-full p-4 sm:p-8 pl-6 sm:pl-12 flex items-center justify-start">
+              {/* Media image container with left alignment */}
+              <div className="w-full h-full p-6 sm:p-10 flex items-center justify-start">
                 <img
                   src={project.img}
                   alt={project.client}
@@ -173,15 +176,15 @@ export function ProjectSpotlights() {
               {/* Clean Cinematic Gradient Scrim */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30" />
 
-              {/* Top-Left: Pure Client Brand Lockup aligned with inner padding */}
-              <div className="absolute top-6 left-6 sm:top-8 sm:left-12">
+              {/* Top-Left: Pure Client Brand Lockup */}
+              <div className="absolute top-6 left-6 sm:top-8 sm:left-10">
                 <span className="cf-mono text-xs sm:text-[13px] font-bold tracking-[0.22em] text-white/90 uppercase drop-shadow-md">
                   {project.client}
                 </span>
               </div>
 
-              {/* Bottom-Left: Punchy Single-Sentence Metric Hook aligned with inner padding */}
-              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-12 max-w-xl text-left">
+              {/* Bottom-Left: Punchy Single-Sentence Metric Hook */}
+              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-10 max-w-xl text-left">
                 <h3 className="text-xl sm:text-2xl lg:text-[28px] font-medium tracking-tight text-white leading-snug drop-shadow-md">
                   <span className="font-bold text-white tracking-tight mr-2 underline decoration-cyan-400/80 decoration-2 underline-offset-4">
                     {project.metric}
