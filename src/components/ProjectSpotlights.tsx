@@ -47,11 +47,12 @@ export function ProjectSpotlights() {
   const scrollToCard = (index: number) => {
     if (!trackRef.current) return;
     const cards = trackRef.current.querySelectorAll<HTMLElement>("[data-spotlight-card]");
-    if (cards[index]) {
-      cards[index].scrollIntoView({
+    if (cards[index] && cards[0]) {
+      // Calculate exact delta from card 0 to guarantee every card aligns precisely with the headline gutter
+      const targetLeft = cards[index].offsetLeft - cards[0].offsetLeft;
+      trackRef.current.scrollTo({
+        left: targetLeft,
         behavior: "smooth",
-        inline: "start",
-        block: "nearest",
       });
       setCurrentIndex(index);
     }
@@ -69,19 +70,33 @@ export function ProjectSpotlights() {
     const track = trackRef.current;
     if (!track) return;
 
+    let timeoutId: NodeJS.Timeout;
     const handleScroll = () => {
-      const cards = track.querySelectorAll<HTMLElement>("[data-spotlight-card]");
-      const trackRect = track.getBoundingClientRect();
-      cards.forEach((card, idx) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.left >= trackRect.left - 50 && rect.left <= trackRect.left + 250) {
-          setCurrentIndex(idx);
-        }
-      });
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const cards = track.querySelectorAll<HTMLElement>("[data-spotlight-card]");
+        if (!cards.length || !cards[0]) return;
+        const currentScroll = track.scrollLeft;
+        
+        let closestIdx = 0;
+        let minDiff = Infinity;
+        cards.forEach((card, idx) => {
+          const target = card.offsetLeft - cards[0].offsetLeft;
+          const diff = Math.abs(currentScroll - target);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIdx = idx;
+          }
+        });
+        setCurrentIndex(closestIdx);
+      }, 50);
     };
 
     track.addEventListener("scroll", handleScroll, { passive: true });
-    return () => track.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(timeoutId);
+      track.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -90,8 +105,8 @@ export function ProjectSpotlights() {
       className="relative py-24 sm:py-32 overflow-x-clip"
       style={{ background: "var(--cf-bg)" }}
     >
-      {/* Container aligned Header */}
-      <div className="mx-auto max-w-6xl px-5">
+      {/* Container aligned Header - Standard max-w-6xl with 24px/1.5rem padding */}
+      <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b" style={{ borderColor: "var(--cf-border)" }}>
           <div className="max-w-2xl">
             <h2
@@ -145,14 +160,14 @@ export function ProjectSpotlights() {
       </div>
 
       {/* Offside Bleed Carousel Track */}
-      {/* Precision grid alignment: H2 starts at max(1.25rem, calc((100vw - 72rem) / 2 + 1.25rem)). */}
-      {/* We set paddingLeft so that Card's inner image starts exactly on this line! */}
+      {/* Exactly aligned with header container left edge: max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem)) */}
       <div
         ref={trackRef}
-        className="mt-10 flex gap-6 sm:gap-8 overflow-x-auto scroll-smooth scrollbar-none pt-2 pb-6"
+        className="mt-10 flex gap-6 sm:gap-8 overflow-x-auto scrollbar-none pt-2 pb-6 snap-x snap-mandatory"
         style={{
-          paddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.25rem))",
-          paddingRight: "max(1.25rem, 8vw)",
+          paddingLeft: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))",
+          paddingRight: "max(1.5rem, 8vw)",
+          scrollPaddingLeft: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))",
         }}
       >
         {PROJECTS.map((project, idx) => {
@@ -161,7 +176,7 @@ export function ProjectSpotlights() {
             <article
               key={project.id}
               data-spotlight-card
-              className="group shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950"
+              className="group shrink-0 w-[85vw] sm:w-[75vw] lg:w-[860px] aspect-[16/9.5] rounded-3xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950 snap-start"
               style={{
                 borderColor: isActive ? "rgba(255, 255, 255, 0.2)" : "var(--cf-border)",
               }}
