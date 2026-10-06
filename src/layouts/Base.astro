@@ -165,6 +165,16 @@ const isLoggedIn = !!Astro.locals.user;
 		</header>
 
 		<nav class="cf-bottom" aria-label="Mobile">
+			<a href="/" class="cf-b-brand" aria-label={siteTitle}>
+				<img
+					src="/favicon.png"
+					alt="Digitas Solusi Indonesia"
+					width="22"
+					height="22"
+					class="cf-brand-icon object-contain"
+				/>
+			</a>
+			<span class="cf-nav-divider cf-b-divider" aria-hidden="true"></span>
 			{
 				navItems.slice(0, 3).map((item) => (
 					<a href={item.url} class:list={["cf-b-link", { "is-active": isActive(item.url) }]} aria-current={isActive(item.url) ? "page" : undefined}>
@@ -172,6 +182,7 @@ const isLoggedIn = !!Astro.locals.user;
 					</a>
 				))
 			}
+			<span class="cf-nav-divider cf-b-divider" aria-hidden="true"></span>
 			<button type="button" class="cf-b-icon" data-search-open aria-label="Search">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
 			</button>
@@ -478,19 +489,24 @@ const isLoggedIn = !!Astro.locals.user;
 			/* Mobile floating bottom capsule */
 			.cf-bottom { display: none; }
 			@media (max-width: 767px) {
-				.cf-pillnav, .cf-kbd, .cf-nav-divider, .cf-search-btn { display: none; }
-				.cf-header { top: 12px; }
-				.cf-unified-nav { padding: 0 14px; height: 42px; }
+				.cf-header { display: none; }
 				.cf-bottom {
 					position: fixed; z-index: 100; left: 50%; bottom: max(14px, env(safe-area-inset-bottom));
 					transform: translateX(-50%); display: flex; align-items: center; gap: 4px;
-					max-width: calc(100vw - 24px); height: 50px; padding: 0 10px; border-radius: 999px;
+					max-width: calc(100vw - 24px); height: 50px; padding: 0 10px 0 12px; border-radius: 999px;
 					background: color-mix(in srgb, var(--cf-bg) 85%, transparent);
 					border: 1px solid var(--cf-border); backdrop-filter: blur(20px) saturate(1.4);
 					-webkit-backdrop-filter: blur(20px) saturate(1.4); box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7);
 				}
+				.cf-b-brand {
+					display: inline-flex; align-items: center; justify-content: center;
+					padding-right: 2px; color: var(--cf-fg) !important;
+				}
+				.cf-b-divider {
+					height: 16px; margin: 0 1px;
+				}
 				.cf-b-link {
-					padding: 0 14px; line-height: 38px; border-radius: 999px; font: 500 13px/38px var(--font-body, sans-serif);
+					padding: 0 12px; line-height: 38px; border-radius: 999px; font: 500 13px/38px var(--font-body, sans-serif);
 					color: var(--cf-muted) !important; white-space: nowrap; transition: background 0.2s, color 0.2s;
 				}
 				.cf-b-link.is-active { background: var(--cf-inv-bg); color: var(--cf-inv-fg) !important; }
