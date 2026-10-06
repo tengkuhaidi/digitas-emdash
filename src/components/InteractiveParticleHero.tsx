@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const SRC = "/images/hero-particle-head.webp";
-const TARGET = 4200; // ponytail: raised for denser, clearer human head silhouette
+const TARGET = 5500; // ponytail: dense point cloud for clear human profile and headphones definition
 const RADIUS = 190;
 
 type P = { nx: number; ny: number; ox: number; oy: number; x: number; y: number; vx: number; vy: number; size: number; baseAlpha: number; currentAlpha: number; currentSize: number; ph: number };
@@ -19,14 +19,16 @@ export function InteractiveParticleHero() {
     const ptr = { x: -9999, y: -9999, active: false };
 
     const layout = () => {
-      // Zoomed in scale: wider spread across desktop & mobile
-      const iw = w < 640 ? w * 2.4 : w < 1024 ? w * 1.8 : Math.max(1400, w * 1.05);
+      // Zoomed in scale & shifted slightly to the right so face profile/headphones clear the centered text
+      const iw = w < 640 ? w * 2.2 : w < 1024 ? w * 1.7 : Math.max(1300, w * 0.95);
       const k = iw / 1200;
-      // Slight vertical adjustment to anchor the head silhouette prominently
-      const left = w / 2 - iw / 2, top = h / 2 - (673 * k) / 2 + (w < 640 ? 30 : 20);
+      // Offset slightly to the right on desktop (+120px) and slight vertical tweak so headphone/face profile stands out
+      const xOffset = w < 768 ? 0 : 120;
+      const left = w / 2 - iw / 2 + xOffset;
+      const top = h / 2 - (673 * k) / 2 + (w < 640 ? 10 : -10);
       for (const p of parts) {
         p.ox = left + p.nx * iw; p.oy = top + p.ny * 673 * k;
-        p.size = (0.8 + (p.baseAlpha) * 1.1) * Math.max(0.85, k * 1.05);
+        p.size = (0.9 + (p.baseAlpha) * 1.2) * Math.max(0.9, k * 1.1);
         if (!p.x && !p.y) { p.x = p.ox; p.y = p.oy; }
       }
     };

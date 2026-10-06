@@ -24,7 +24,7 @@ export function HeroCraft() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(ellipse 55% 50% at 50% 50%, color-mix(in srgb, var(--cf-bg) 40%, transparent) 0%, transparent 75%), linear-gradient(180deg, var(--cf-bg) 0%, transparent 15%, transparent 82%, var(--cf-bg) 100%)",
+            "radial-gradient(ellipse 50% 45% at 50% 50%, color-mix(in srgb, var(--cf-bg) 25%, transparent) 0%, transparent 75%), linear-gradient(180deg, var(--cf-bg) 0%, transparent 12%, transparent 85%, var(--cf-bg) 100%)",
         }}
       />
       <div
