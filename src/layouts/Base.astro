@@ -113,19 +113,11 @@ const isLoggedIn = !!Astro.locals.user;
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
 		<script is:inline>
-			// Default to dark corporate theme unless explicitly set to light
+			// Force dark mode exclusively
 			(function () {
 				try {
-					var row = document.cookie.split("; ").find(function (item) {
-						return item.startsWith("theme=");
-					});
-					var theme = row ? row.slice(6) : "dark";
-					if (theme === "light") {
-						document.documentElement.classList.remove("dark");
-						document.documentElement.classList.add("light");
-					} else {
-						document.documentElement.classList.add("dark");
-					}
+					document.documentElement.classList.remove("light");
+					document.documentElement.classList.add("dark");
 				} catch (_) {}
 			})();
 		</script>
@@ -133,41 +125,41 @@ const isLoggedIn = !!Astro.locals.user;
 	<body>
 		<EmDashBodyStart page={pageCtx} />
 		<header class="cf-header">
-			<a href="/" class="cf-cap cf-brand" aria-label={siteTitle}>
-				<img
-					src="/favicon.png"
-					alt="Digitas Solusi Indonesia"
-					width="26"
-					height="26"
-					class="cf-brand-icon object-contain"
-				/>
-			</a>
+			<div class="cf-unified-nav">
+				<a href="/" class="cf-brand" aria-label={siteTitle}>
+					<img
+						src="/favicon.png"
+						alt="Digitas Solusi Indonesia"
+						width="24"
+						height="24"
+						class="cf-brand-icon object-contain"
+					/>
+				</a>
 
-			<nav class="cf-cap cf-pillnav" aria-label="Primary">
-				<span class="cf-hover-pill" aria-hidden="true"></span>
-				{
-					navItems.map((item) => (
-						<a
-							href={item.url}
-							target={item.target}
-							rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
-							aria-current={isActive(item.url) ? "page" : undefined}
-							class:list={["cf-link", { "is-active": isActive(item.url) }]}
-						>
-							{item.label}
-						</a>
-					))
-				}
-			</nav>
+				<span class="cf-nav-divider" aria-hidden="true"></span>
 
-			<div class="cf-cap cf-utility">
-				<button type="button" class="cf-icon" data-search-open aria-label="Search (Ctrl K)">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+				<nav class="cf-pillnav" aria-label="Primary">
+					<span class="cf-hover-pill" aria-hidden="true"></span>
+					{
+						navItems.map((item) => (
+							<a
+								href={item.url}
+								target={item.target}
+								rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+								aria-current={isActive(item.url) ? "page" : undefined}
+								class:list={["cf-link", { "is-active": isActive(item.url) }]}
+							>
+								{item.label}
+							</a>
+						))
+					}
+				</nav>
+
+				<span class="cf-nav-divider" aria-hidden="true"></span>
+
+				<button type="button" class="cf-icon cf-search-btn" data-search-open aria-label="Search (Ctrl K)">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
 					<kbd class="cf-kbd">⌘K</kbd>
-				</button>
-				<button type="button" class="cf-icon" data-theme-toggle aria-label="Toggle theme">
-					<svg class="cf-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-					<svg class="cf-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
 				</button>
 			</div>
 		</header>
@@ -182,10 +174,6 @@ const isLoggedIn = !!Astro.locals.user;
 			}
 			<button type="button" class="cf-b-icon" data-search-open aria-label="Search">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-			</button>
-			<button type="button" class="cf-b-icon" data-theme-toggle aria-label="Toggle theme">
-				<svg class="cf-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-				<svg class="cf-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
 			</button>
 		</nav>
 
@@ -270,81 +258,6 @@ const isLoggedIn = !!Astro.locals.user;
 				<div class="ft-bottom">
 					<p class="ft-copy">© 2026 PT Digitas Solusi Indonesia. All rights reserved.</p>
 					<div class="ft-controls">
-						<div class="theme-switcher">
-						<button
-							type="button"
-							class="theme-btn"
-							data-theme="light"
-							aria-label="Light mode"
-						>
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><circle cx="12" cy="12" r="5"></circle><line
-									x1="12"
-									y1="1"
-									x2="12"
-									y2="3"></line><line x1="12" y1="21" x2="12" y2="23"
-								></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"
-								></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"
-								></line><line x1="1" y1="12" x2="3" y2="12"></line><line
-									x1="21"
-									y1="12"
-									x2="23"
-									y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"
-								></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"
-								></line></svg
-							>
-						</button>
-						<button
-							type="button"
-							class="theme-btn"
-							data-theme="dark"
-							aria-label="Dark mode"
-						>
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-								></path></svg
-							>
-						</button>
-						<button
-							type="button"
-							class="theme-btn"
-							data-theme="system"
-							aria-label="System theme"
-						>
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><rect x="2" y="3" width="20" height="14" rx="2" ry="2"
-								></rect><line x1="8" y1="21" x2="16" y2="21"></line><line
-									x1="12"
-									y1="17"
-									x2="12"
-									y2="21"></line></svg
-							>
-						</button>
-					</div>
 						<a class="ft-top" href="#top" aria-label="Back to top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑</a>
 					</div>
 				</div>
@@ -356,66 +269,6 @@ const isLoggedIn = !!Astro.locals.user;
 			const jkt = document.querySelector("[data-jkt-time]");
 			const tick = () => { if (jkt) jkt.textContent = "Jakarta · UTC+7 · " + new Date().toLocaleTimeString("en-GB", { timeZone: "Asia/Jakarta", hour: "2-digit", minute: "2-digit" }) + " WIB"; };
 			tick(); setInterval(tick, 30000);
-
-			// Theme switcher
-			const themeBtns =
-				document.querySelectorAll<HTMLButtonElement>(".theme-btn");
-			const root = document.documentElement;
-
-			function setCookie(
-				name: string,
-				value: string,
-				maxAge: number = 31536000,
-			) {
-				const secure = location.protocol === "https:" ? "; Secure" : "";
-				if (value === "") {
-					document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax${secure}`;
-				} else {
-					document.cookie = `${name}=${value}; path=/; max-age=${maxAge}; SameSite=Lax${secure}`;
-				}
-			}
-
-			function setTheme(theme: string) {
-				if (theme === "system") {
-					setCookie("theme", "");
-					root.classList.remove("light", "dark");
-				} else {
-					setCookie("theme", theme);
-					root.classList.remove("light", "dark");
-					root.classList.add(theme);
-				}
-				updateActiveBtn(theme);
-			}
-
-			function updateActiveBtn(theme: string) {
-				themeBtns.forEach((btn) => {
-					const active = btn.dataset.theme === theme;
-					btn.classList.toggle("active", active);
-					btn.setAttribute("aria-pressed", String(active));
-				});
-			}
-
-			function getStoredTheme(): string {
-				const row = document.cookie
-					.split("; ")
-					.find((item) => item.startsWith("theme="));
-				return row?.slice(6) || "dark";
-			}
-
-			// Initialize
-			const storedTheme = getStoredTheme();
-			setTheme(storedTheme);
-
-			themeBtns.forEach((btn) => {
-				btn.addEventListener("click", () => {
-					setTheme(btn.dataset.theme || "system");
-				});
-			});
-			document.querySelectorAll("[data-theme-toggle]").forEach((b) =>
-				b.addEventListener("click", () =>
-					setTheme(root.classList.contains("light") ? "dark" : "light"),
-				),
-			);
 		</script>
 
 		<style is:global>
@@ -529,35 +382,75 @@ const isLoggedIn = !!Astro.locals.user;
 		</style>
 
 		<style>
-			/* ---- Modern Craft floating header ---- */
+			/* ---- Modern Craft unified center floating header ---- */
 			.cf-header {
 				position: fixed;
 				top: 14px;
 				left: 0;
 				right: 0;
 				z-index: 100;
-				display: grid;
-				grid-template-columns: 1fr auto 1fr;
+				display: flex;
+				justify-content: center;
 				align-items: center;
-				gap: 12px;
-				padding: 0 20px;
+				padding: 0 16px;
 				pointer-events: none;
 			}
-			.cf-cap {
+			.cf-unified-nav {
 				pointer-events: auto;
-				display: flex;
+				display: inline-flex;
 				align-items: center;
+				gap: 4px;
 				height: 48px;
-				padding: 0 6px;
+				padding: 0 6px 0 12px;
 				border-radius: 999px;
-				background: color-mix(in srgb, var(--cf-bg) 72%, transparent);
+				background: color-mix(in srgb, var(--cf-bg) 75%, transparent);
 				border: 1px solid var(--cf-border);
-				backdrop-filter: blur(18px) saturate(1.4);
-				-webkit-backdrop-filter: blur(18px) saturate(1.4);
-				box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
+				backdrop-filter: blur(20px) saturate(1.4);
+				-webkit-backdrop-filter: blur(20px) saturate(1.4);
+				box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.65);
 			}
-			.cf-brand { justify-self: start; padding: 0 10px; width: 44px; height: 44px; justify-content: center; color: var(--cf-fg) !important; display: inline-flex; align-items: center; border-radius: 999px; }
-			.cf-brand-icon { width: 26px; height: 26px; display: block; object-fit: contain; }
+			.cf-brand {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--cf-fg) !important;
+				padding-right: 4px;
+				transition: transform 0.2s;
+			}
+			.cf-brand:hover { transform: scale(1.05); }
+			.cf-brand-icon { width: 22px; height: 22px; display: block; object-fit: contain; }
+			.cf-nav-divider {
+				width: 1px;
+				height: 18px;
+				background: var(--cf-border);
+				opacity: 0.8;
+				margin: 0 2px;
+			}
+			.cf-pillnav { position: relative; display: flex; align-items: center; gap: 2px; padding: 0 2px; }
+			.cf-hover-pill {
+				position: absolute; left: 0; top: 5px; bottom: 5px; border-radius: 999px;
+				background: var(--cf-raised); border: 1px solid var(--cf-border);
+				opacity: 0; width: 0;
+				transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s;
+			}
+			.cf-link {
+				position: relative; z-index: 1; padding: 0 14px; line-height: 36px;
+				font: 500 13px/36px var(--font-body, sans-serif);
+				color: var(--cf-muted) !important; transition: color 0.2s; white-space: nowrap;
+			}
+			.cf-link:hover, .cf-link.is-active { color: var(--cf-fg) !important; }
+			.cf-search-btn {
+				display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 10px;
+				border: 0; border-radius: 999px; background: transparent; color: var(--cf-muted);
+				cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.2s;
+			}
+			.cf-search-btn:hover { background: var(--cf-raised); color: var(--cf-fg); }
+			.cf-search-btn:active { transform: scale(0.92); }
+			.cf-kbd {
+				font: 500 10.5px/1 var(--font-mono, monospace); padding: 2px 5px; border-radius: 5px;
+				border: 1px solid var(--cf-border); color: var(--cf-dim);
+			}
+
 			.ft-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
 			.footer-brand-icon { width: 26px; height: 26px; display: block; object-fit: contain; }
 			.footer-brand-name { font: 700 18px/1 var(--font-display, sans-serif); color: var(--cf-fg); letter-spacing: -0.02em; }
@@ -569,34 +462,6 @@ const isLoggedIn = !!Astro.locals.user;
 				background: var(--cf-inv-bg); color: var(--cf-inv-fg);
 				font: 800 15px/1 var(--font-display, sans-serif);
 			}
-			.cf-pillnav { position: relative; gap: 2px; padding: 0 4px; }
-			.cf-hover-pill {
-				position: absolute; left: 0; top: 5px; bottom: 5px; border-radius: 999px;
-				background: var(--cf-raised); border: 1px solid var(--cf-border);
-				opacity: 0; width: 0;
-				transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s;
-			}
-			.cf-link {
-				position: relative; z-index: 1; padding: 0 16px; line-height: 36px;
-				font: 500 13.5px/36px var(--font-body, sans-serif);
-				color: var(--cf-muted) !important; transition: color 0.2s;
-			}
-			.cf-link:hover, .cf-link.is-active { color: var(--cf-fg) !important; }
-			.cf-utility { justify-self: end; gap: 4px; padding: 0 6px; }
-			.cf-icon {
-				display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 11px;
-				border: 0; border-radius: 999px; background: transparent; color: var(--cf-muted);
-				cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.2s;
-			}
-			.cf-icon:hover { background: var(--cf-raised); color: var(--cf-fg); }
-			.cf-icon:active { transform: scale(0.92); }
-			.cf-kbd {
-				font: 500 11px/1 var(--font-mono, monospace); padding: 3px 6px; border-radius: 6px;
-				border: 1px solid var(--cf-border); color: var(--cf-dim);
-			}
-			.cf-sun { display: none; }
-			:root.light .cf-sun { display: block; }
-			:root.light .cf-moon { display: none; }
 
 			/* Search dialog */
 			.cf-search {
@@ -613,23 +478,24 @@ const isLoggedIn = !!Astro.locals.user;
 			/* Mobile floating bottom capsule */
 			.cf-bottom { display: none; }
 			@media (max-width: 767px) {
-				.cf-pillnav, .cf-kbd, .cf-utility { display: none; }
-				.cf-header { grid-template-columns: 1fr; top: 10px; padding: 0 12px; }
+				.cf-pillnav, .cf-kbd, .cf-nav-divider, .cf-search-btn { display: none; }
+				.cf-header { top: 12px; }
+				.cf-unified-nav { padding: 0 14px; height: 42px; }
 				.cf-bottom {
 					position: fixed; z-index: 100; left: 50%; bottom: max(14px, env(safe-area-inset-bottom));
-					transform: translateX(-50%); display: flex; align-items: center; gap: 2px;
-					max-width: calc(100vw - 24px); height: 56px; padding: 0 8px; border-radius: 999px;
-					background: color-mix(in srgb, var(--cf-bg) 78%, transparent);
-					border: 1px solid var(--cf-border); backdrop-filter: blur(18px) saturate(1.4);
-					-webkit-backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7);
+					transform: translateX(-50%); display: flex; align-items: center; gap: 4px;
+					max-width: calc(100vw - 24px); height: 50px; padding: 0 10px; border-radius: 999px;
+					background: color-mix(in srgb, var(--cf-bg) 85%, transparent);
+					border: 1px solid var(--cf-border); backdrop-filter: blur(20px) saturate(1.4);
+					-webkit-backdrop-filter: blur(20px) saturate(1.4); box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7);
 				}
 				.cf-b-link {
-					padding: 0 14px; line-height: 40px; border-radius: 999px; font: 500 13px/40px var(--font-body, sans-serif);
+					padding: 0 14px; line-height: 38px; border-radius: 999px; font: 500 13px/38px var(--font-body, sans-serif);
 					color: var(--cf-muted) !important; white-space: nowrap; transition: background 0.2s, color 0.2s;
 				}
 				.cf-b-link.is-active { background: var(--cf-inv-bg); color: var(--cf-inv-fg) !important; }
 				.cf-b-icon {
-					display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%;
+					display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 50%;
 					background: transparent; color: var(--cf-muted); cursor: pointer;
 				}
 				.cf-b-icon:active { background: var(--cf-raised); transform: scale(0.9); }

@@ -22,10 +22,10 @@ export function InteractiveParticleHero() {
       // Zoomed in scale & shifted slightly to the right so face profile/headphones clear the centered text
       const iw = w < 640 ? w * 2.2 : w < 1024 ? w * 1.7 : Math.max(1300, w * 0.95);
       const k = iw / 1200;
-      // Offset slightly to the right on desktop (+120px) and slight vertical tweak so headphone/face profile stands out
-      const xOffset = w < 768 ? 0 : 120;
+      // Centered layout: left silhouette headphone and right facial profile balance evenly around center
+      const xOffset = 0;
       const left = w / 2 - iw / 2 + xOffset;
-      const top = h / 2 - (673 * k) / 2 + (w < 640 ? 10 : -10);
+      const top = h / 2 - (673 * k) / 2 + (w < 640 ? 10 : 0);
       for (const p of parts) {
         p.ox = left + p.nx * iw; p.oy = top + p.ny * 673 * k;
         p.size = (0.9 + (p.baseAlpha) * 1.2) * Math.max(0.9, k * 1.1);
