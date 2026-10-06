@@ -183,24 +183,24 @@ export function ProjectSpotlights() {
             <article
               key={project.id}
               data-spotlight-card
-              className="group shrink-0 w-[84vw] sm:w-[65vw] lg:w-[680px] aspect-[4/5] sm:aspect-[16/11] rounded-2xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950 snap-start"
+              className="group shrink-0 w-[86vw] sm:w-[70vw] lg:w-[780px] aspect-[4/4.8] sm:aspect-[16/10.5] rounded-2xl border overflow-hidden relative transition-all duration-500 shadow-2xl bg-zinc-950 snap-start"
               style={{
                 borderColor: isActive ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.08)",
               }}
             >
-              {/* Full-Bleed Media Background */}
-              <div className="absolute inset-0 w-full h-full bg-zinc-950 overflow-hidden">
+              {/* Media image centered and fitted without aggressive cropping */}
+              <div className="absolute inset-0 w-full h-full p-4 sm:p-7 md:p-10 flex items-center justify-center bg-zinc-950 overflow-hidden">
                 <img
                   src={project.img}
                   alt={project.client}
-                  className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02] filter brightness-[0.75] contrast-[1.05]"
+                  className="max-w-full max-h-full w-auto h-auto object-contain object-center rounded-xl transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                   loading="lazy"
                 />
               </div>
 
               {/* TryProfound Multi-Stop Scrim: Top subtle dark + Bottom 55% smooth gradient for 100% white text contrast */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black via-black/85 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/85 via-black/40 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-black via-black/80 to-transparent" />
 
               {/* Top-Left: Brand Lockup (1:1 with MongoDB / Plaid placement in Profound) */}
               <div className="absolute top-5 left-5 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
