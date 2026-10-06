@@ -211,25 +211,18 @@ export function ProjectSpotlights() {
 
               {/* Bottom Lockup (1:1 TryProfound Customer Story Anatomy) */}
               <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6 text-left z-20">
-                {/* 1. Metric Hook: Big Number stacked over Description */}
+                {/* 1. Metric Hook: Scaled down for balanced editorial fit */}
                 <div>
-                  <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none drop-shadow-md">
+                  <div className="text-2xl sm:text-3xl lg:text-[32px] font-bold text-white tracking-tight leading-none drop-shadow-md">
                     {project.metricNumber}
                   </div>
-                  <div className="mt-1.5 text-sm sm:text-base text-white/90 font-normal leading-snug drop-shadow-sm max-w-md">
+                  <div className="mt-1.5 text-xs sm:text-sm text-zinc-300 font-normal leading-snug drop-shadow-sm max-w-md">
                     {project.metricLabel}
                   </div>
                 </div>
 
-                {/* 2. Attribution: Single Line "Name • Title" (1:1 Profound) */}
-                <div className="mt-3 flex items-center gap-1.5 text-xs sm:text-[13px] leading-tight text-white/90">
-                  <span className="font-semibold text-white">{project.personName}</span>
-                  <span className="text-zinc-500 font-bold">•</span>
-                  <span className="text-zinc-400 font-normal truncate">{project.personRole}</span>
-                </div>
-
-                {/* 3. Button: Translucent Pill "View story" without extra icons (1:1 Profound) */}
-                <div className="mt-4">
+                {/* 2. Button: Translucent Pill "View story" */}
+                <div className="mt-3.5 sm:mt-4">
                   <a
                     href={project.href}
                     className="inline-flex items-center justify-center px-4 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-200 border bg-white/15 hover:bg-white/25 border-white/20 text-white backdrop-blur-md shadow-sm active:scale-95"
