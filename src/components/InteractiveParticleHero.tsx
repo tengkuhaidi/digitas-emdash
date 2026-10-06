@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const SRC = "/images/hero-particle-head.webp";
-const TARGET = 3000; // ponytail: random-thin to ~TARGET dots; raise for denser head, costs fps
+const TARGET = 4200; // ponytail: raised for denser, clearer human head silhouette
 const RADIUS = 190;
 
 type P = { nx: number; ny: number; ox: number; oy: number; x: number; y: number; vx: number; vy: number; size: number; baseAlpha: number; currentAlpha: number; currentSize: number; ph: number };
@@ -19,12 +19,14 @@ export function InteractiveParticleHero() {
     const ptr = { x: -9999, y: -9999, active: false };
 
     const layout = () => {
-      const iw = w < 640 ? w * 1.7 : w < 1024 ? w * 1.25 : 900;
+      // Zoomed in scale: wider spread across desktop & mobile
+      const iw = w < 640 ? w * 2.4 : w < 1024 ? w * 1.8 : Math.max(1400, w * 1.05);
       const k = iw / 1200;
-      const left = w / 2 - iw / 2, top = h / 2 - (673 * k) / 2;
+      // Slight vertical adjustment to anchor the head silhouette prominently
+      const left = w / 2 - iw / 2, top = h / 2 - (673 * k) / 2 + (w < 640 ? 30 : 20);
       for (const p of parts) {
         p.ox = left + p.nx * iw; p.oy = top + p.ny * 673 * k;
-        p.size = (0.7 + (p.baseAlpha) * 0.9) * Math.max(0.8, k * 1.2);
+        p.size = (0.8 + (p.baseAlpha) * 1.1) * Math.max(0.85, k * 1.05);
         if (!p.x && !p.y) { p.x = p.ox; p.y = p.oy; }
       }
     };
