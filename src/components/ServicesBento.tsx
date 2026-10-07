@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import type { ComponentType } from "react";
-import { Terminal, Phone, Laptop, Dish, Terrain } from "@lucasmarkes/hairline/react";
+import { Terminal, Phone, Laptop, Terrain } from "@lucasmarkes/hairline/react";
 import { NeuralCore } from "./NeuralCore";
+import { GrowthMatrix } from "./GrowthMatrix";
 
 const spring = { type: "spring", stiffness: 300, damping: 26 } as const;
 
@@ -57,8 +58,8 @@ const SERVICES: {
     title: "Digital Marketing & Growth Architecture",
     body: "Programmatic SEO infrastructure and reliable GA4 telemetry: fast indexing on autopilot with zero ad burn.",
     tags: ["Auto Indexing", "GA4 Telemetry", "Organic SEO"],
-    Fig: Dish as Fig,
-    label: "Interactive isometric satellite dish",
+    Fig: GrowthMatrix,
+    label: "Interactive isometric growth telemetry and traffic surge bar matrix",
     span: "lg:col-span-4",
   },
   {

@@ -92,10 +92,6 @@ export function AutonomousSystemsSection() {
                 We spend less time guessing and own the entire system around your problem.
               </h2>
 
-              <p className="mt-6 text-base sm:text-lg leading-relaxed" style={{ color: "var(--cf-muted)" }}>
-                At Digitas, we do not start with superficial mockups. We audit the friction in your operations, isolate each bottleneck, engineer the automated fix, and stay to ensure performance never slips.
-              </p>
-
               {/* Interactive Isometric Branches Plate */}
               <div className="mt-8 rounded-2xl border p-4 bg-zinc-950/60" style={{ borderColor: "var(--cf-border)" }}>
                 <div className="flex items-center justify-between mb-2 pb-2 border-b" style={{ borderColor: "var(--cf-border)" }}>
