@@ -58,11 +58,11 @@ export function ProjectSpotlights() {
   const scrollToCard = (index: number) => {
     if (!trackRef.current) return;
     const cards = trackRef.current.querySelectorAll<HTMLElement>("[data-spotlight-card]");
-    if (cards[index] && cards[0]) {
-      const targetLeft = cards[index].offsetLeft - cards[0].offsetLeft;
-      trackRef.current.scrollTo({
-        left: targetLeft,
+    if (cards[index]) {
+      cards[index].scrollIntoView({
         behavior: "smooth",
+        inline: "start",
+        block: "nearest",
       });
       setCurrentIndex(index);
     }
@@ -85,14 +85,14 @@ export function ProjectSpotlights() {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         const cards = track.querySelectorAll<HTMLElement>("[data-spotlight-card]");
-        if (!cards.length || !cards[0]) return;
-        const currentScroll = track.scrollLeft;
+        if (!cards.length) return;
+        const trackRect = track.getBoundingClientRect();
         
         let closestIdx = 0;
         let minDiff = Infinity;
         cards.forEach((card, idx) => {
-          const target = card.offsetLeft - cards[0].offsetLeft;
-          const diff = Math.abs(currentScroll - target);
+          const cardRect = card.getBoundingClientRect();
+          const diff = Math.abs(cardRect.left - trackRect.left);
           if (diff < minDiff) {
             minDiff = diff;
             closestIdx = idx;

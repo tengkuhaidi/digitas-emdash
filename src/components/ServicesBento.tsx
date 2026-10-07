@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import type { ComponentType } from "react";
-import { Terminal, Phone, Laptop, Dish, Terrain, Router } from "@lucasmarkes/hairline/react";
+import { Terminal, Phone, Laptop, Dish, Terrain } from "@lucasmarkes/hairline/react";
+import { NeuralCore } from "./NeuralCore";
 
 const spring = { type: "spring", stiffness: 300, damping: 26 } as const;
 
@@ -29,8 +30,8 @@ const SERVICES: {
     title: "Enterprise AI Implementation",
     body: "Custom LLM integrations, deterministic agent workflows, and local model routing designed for zero-downtime reliability.",
     tags: ["Agent Pipeline", "Vector Search", "Model Routing"],
-    Fig: Router as Fig,
-    label: "Interactive isometric AI router",
+    Fig: NeuralCore,
+    label: "Interactive isometric neural core compute stack",
     span: "lg:col-span-6",
   },
   {
