@@ -188,19 +188,19 @@ export function ProjectSpotlights() {
                 borderColor: isActive ? "rgba(255, 255, 255, 0.22)" : "rgba(255, 255, 255, 0.08)",
               }}
             >
-              {/* Media image positioned toward top/middle with padding */}
-              <div className="absolute inset-x-0 top-0 h-[62%] sm:h-[68%] p-3 pt-12 sm:p-6 sm:pt-14 md:p-8 md:pt-16 flex items-center justify-center overflow-hidden">
+              {/* Media image: full-bleed cover card with 16:10 Canva canvas */}
+              <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <img
                   src={project.img}
-                  alt={project.title}
+                  alt={project.client}
                   loading="lazy"
-                  className="w-full h-full object-contain object-center rounded-xl shadow-xl transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
               </div>
 
-              {/* Multi-Stop Dark Scrim: Deep dark gradient from 45% down so stats never collide with white screenshots */}
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/85 via-black/40 to-transparent" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-black via-black/95 via-40% to-transparent" />
+              {/* Scrim overlay: Top dark bar for brand client name + Bottom smooth dark gradient for metric & button */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/80 via-black/30 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/80 to-transparent" />
 
               {/* Top-Left: Brand Lockup (1:1 with MongoDB / Plaid placement in Profound) */}
               <div className="absolute top-5 left-5 sm:top-6 sm:left-6 z-20 flex items-center gap-2">
