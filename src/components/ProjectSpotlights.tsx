@@ -211,21 +211,21 @@ export function ProjectSpotlights() {
 
               {/* Bottom Lockup (1:1 TryProfound Customer Story Anatomy) */}
               <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6 text-left z-20">
-                {/* 1. Metric Hook: Scaled down for balanced editorial fit */}
+                {/* 1. Metric Hook: Compact editorial fit */}
                 <div>
-                  <div className="text-2xl sm:text-3xl lg:text-[32px] font-bold text-white tracking-tight leading-none drop-shadow-md">
+                  <div className="text-lg sm:text-xl lg:text-2xl font-semibold text-white tracking-tight leading-none drop-shadow-md">
                     {project.metricNumber}
                   </div>
-                  <div className="mt-1.5 text-xs sm:text-sm text-zinc-300 font-normal leading-snug drop-shadow-sm max-w-md">
+                  <div className="mt-1 text-[11px] sm:text-xs text-zinc-400 font-normal leading-snug drop-shadow-sm max-w-sm">
                     {project.metricLabel}
                   </div>
                 </div>
 
                 {/* 2. Button: Translucent Pill "View story" */}
-                <div className="mt-3.5 sm:mt-4">
+                <div className="mt-2.5 sm:mt-3">
                   <a
                     href={project.href}
-                    className="inline-flex items-center justify-center px-4 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-200 border bg-white/15 hover:bg-white/25 border-white/20 text-white backdrop-blur-md shadow-sm active:scale-95"
+                    className="inline-flex items-center justify-center px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all duration-200 border bg-white/10 hover:bg-white/20 border-white/15 text-zinc-200 backdrop-blur-md shadow-sm active:scale-95"
                   >
                     View story
                   </a>
