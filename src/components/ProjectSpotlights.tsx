@@ -59,10 +59,12 @@ export function ProjectSpotlights() {
     if (!trackRef.current) return;
     const cards = trackRef.current.querySelectorAll<HTMLElement>("[data-spotlight-card]");
     if (cards[index]) {
-      cards[index].scrollIntoView({
+      const track = trackRef.current;
+      const targetCard = cards[index];
+      const targetLeft = targetCard.offsetLeft - cards[0].offsetLeft;
+      track.scrollTo({
+        left: targetLeft,
         behavior: "smooth",
-        inline: "start",
-        block: "nearest",
       });
       setCurrentIndex(index);
     }
@@ -90,9 +92,10 @@ export function ProjectSpotlights() {
         
         let closestIdx = 0;
         let minDiff = Infinity;
+        const startLeft = trackRect.left + parseFloat(window.getComputedStyle(track).paddingLeft || "0");
         cards.forEach((card, idx) => {
           const cardRect = card.getBoundingClientRect();
-          const diff = Math.abs(cardRect.left - trackRect.left);
+          const diff = Math.abs(cardRect.left - startLeft);
           if (diff < minDiff) {
             minDiff = diff;
             closestIdx = idx;
@@ -173,7 +176,7 @@ export function ProjectSpotlights() {
         className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-none pt-1 pb-6 snap-x snap-mandatory"
         style={{
           paddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.5rem))",
-          paddingRight: "max(1.25rem, 8vw)",
+          paddingRight: "max(1.25rem, calc(100vw - 780px))",
           scrollPaddingLeft: "max(1.25rem, calc((100vw - 72rem) / 2 + 1.5rem))",
         }}
       >
